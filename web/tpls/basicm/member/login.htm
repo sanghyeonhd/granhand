@@ -1,0 +1,127 @@
+{#header}
+<script>
+$(document).ready(function () {
+	
+	$('#f_loginform').on('submit', function (e) {
+		e.preventDefault();
+		const id = $('#f_id').val().trim();
+		const passwd = $('#f_passwd').val().trim();
+		
+
+		if (id === '') {
+			alert('아이디를 입력해주세요.');
+			$('#f_id').focus();
+			return;
+		}
+
+		if (passwd === '') {
+			alert('비밀번호를 입력해주세요.');
+			$('#f_passwd').focus();
+			return;
+		}
+
+		this.submit();
+	});
+	
+	const $id     = $('#f_id');
+	const $pwd    = $('#f_passwd');
+	const $submit = $('#f_submit');
+	const $idMsg   = $('#f_idmsg');
+	const $pwdMsg  = $('#f_passwdmsg');
+
+	const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	const passReg  = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+
+	function validate() {
+		const idVal  = $id.val().trim();
+		const pwdVal = $pwd.val();
+		
+		/* --- 아이디 검증 --- */
+		let idOk = false;
+		if (idVal === '') {
+			$idMsg.text('아이디를 입력하세요.').removeClass('hidden');
+			$id.addClass('bg-[#FF3E24]');
+		} else if (!emailReg.test(idVal)) {
+			$idMsg.text('이메일 형식이 올바르지 않습니다.').removeClass('hidden');
+			$id.addClass('bg-[#FF3E24]');
+		} else {
+			idOk = true;
+			$idMsg.addClass('hidden');
+			$id.removeClass('bg-[#FF3E24]');
+		}
+
+		/* --- 비밀번호 검증 --- */
+		let pwdOk = false;
+		if (pwdVal === '') {
+			$pwdMsg.text('비밀번호를 입력하세요.').removeClass('hidden');
+			$pwd.addClass('bg-[#FF3E24]');
+		} else if (!passReg.test(pwdVal)) {
+			$pwdMsg.text('비밀번호는 영문, 숫자, 특수문자 포함 8자리 이상입니다.').removeClass('hidden');
+			$pwd.addClass('bg-[#FF3E24]');
+		} else {
+			pwdOk = true;
+			$pwdMsg.addClass('hidden');
+			$pwd.removeClass('bg-[#FF3E24]');
+		}
+
+		console.log(idOk);
+		console.log(pwdOk);
+		$submit.prop('disabled', !(idOk && pwdOk));
+	}
+
+	// 포커스가 빠져나올 때 검사
+	$id.on('blur', validate);
+	$pwd.on('blur', validate);
+});
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center">
+			<a href="/"><img src="/img/m/Logo.png" /></a>
+		</div>
+		<div class="pt-12 px-6">
+			{login.form_start}
+			<div class="text-sm text-[#322A24] font-medium pb-2">아이디</div>
+			<div class="mb-4">
+				<div class="h-[46px] border-[#C0BCB6] border mb-1">
+					<input type="text" name="id" id="f_id" placeholder="이메일을 입력해 주세요." class="block px-4 bg-[#FDFBF4] w-full h-[44px] font-medium" />
+				</div>
+				<div class="hidden text-[#FF3E24] text-[10px]" id="f_idmsg"></div>
+			</div>
+			<div class="text-sm text-[#322A24] font-medium pb-2">비밀번호</div>
+			<div class="mb-12">
+				<div class="h-[46px] border-[#C0BCB6] border mb-1">
+					<input type="password" name="passwd" id="f_passwd" placeholder="비밀번호를 입력해 주세요." class="block px-4 bg-[#FDFBF4] w-full h-[44px] font-medium" />
+				</div>
+				<div class="hidden text-[#FF3E24] text-[10px]" id="f_passwdmsg"></div>
+			</div>
+			<button type="submit" id="f_submit" class="w-full block h-[46px] mb-4 text-sm text-[#FFFFFF] font-bold disabled:opacity-15 bg-[#322A24]" disabled>로그인</button>
+			{login.form_end}
+			<A href="/member/?act=joinstep1" class=" h-[46px] border-[#C0BCB6] border mb-4 w-full h-[46px] mb-4 text-sm text-[#322A24] font-bold flex items-center justify-center">이메일 회원가입</a>
+			<div class="flex items-center justify-center mb-12">
+				<a class="flex items-end justify-center text-xs text-[#322A24] text-medium" href="/member/?act=findid">
+					아이디 찾기
+				</a>
+				<div class="shrink-0 w-[1px] h-2 bg-gray-300 mx-4"></div>
+				<a class="flex items-center justify-center text-xs text-[#322A24] text-medium" href="/member/?act=findpasswd">
+					비밀번호 찾기
+				</a>
+			</div>
+			<div class="flex items-center justify-between mb-6">
+				<div class="h-[1px] h-2 bg-gray-300 mx-4" style="width:30%"></div>
+				<div class="text-medium text-xs text-[#322A24] block">간편 로그인</div>
+				<div class="h-[1px] h-2 bg-gray-300 mx-4" style="width:30%"></div><div></div>
+			</div>
+			<div class="flex items-center justify-center">
+				<A href="#"><img src="/img/m/Logo_Apple.png" style="width:48px;"></a>
+				<A href="#" class="pl-6 pr-3"><img src="/img/m/google_logo_2_littledeep.png" style="width:48px;"></a>
+				<A href="#" class="pl-3 pr-6"><img src="/img/m/Logo_Naver.png" style="width:48px;"></a>
+				<A href="#"><img src="/img/m/Logo_Kakao.png" style="width:48px;"></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{#down}

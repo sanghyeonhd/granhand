@@ -1,0 +1,102 @@
+{#header}
+<script>
+$(document).ready(function () {
+	
+	
+	const $pwd    = $('#f_passwd');
+	const $repwd    = $('#f_repasswd');
+	const $submit = $('#f_next');
+	const $pwdMsg  = $('#f_passwdmsg');
+	const $repwdMsg  = $('#f_repasswdmsg');
+
+	const passReg  = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+
+	function validate() {
+		const pwdVal = $pwd.val();
+		const repwdVal = $repwd.val();
+		
+		
+		/* --- 비밀번호 검증 --- */
+		let pwdOk = false;
+		if (pwdVal === '') {
+			$pwdMsg.text('비밀번호를 입력하세요.').removeClass('hidden');
+			$pwd.addClass('bg-[#FF3E24]');
+		} else if (!passReg.test(pwdVal)) {
+			$pwdMsg.text('비밀번호는 영문, 숫자, 특수문자 포함 8자리 이상입니다.').removeClass('hidden');
+			$pwd.addClass('bg-[#FF3E24]');
+		} else {
+			pwdOk = true;
+			$pwdMsg.addClass('hidden');
+			$pwd.removeClass('bg-[#FF3E24]');
+		}
+		
+		/* --- 비밀번호 검증 --- */
+		let repwdOk = false;
+		if (repwdVal === '') {
+			$repwdMsg.text('비밀번호 확인을 입력하세요.').removeClass('hidden');
+			$repwd.addClass('bg-[#FF3E24]');
+		} else {
+			if (pwdVal != repwdVal) {
+				$repwdMsg.text('비밀번호가 맞지 않습니다.').removeClass('hidden');
+				$repwd.addClass('bg-[#FF3E24]');
+			}
+			else{
+				
+				repwdOk = true;
+				$repwdMsg.addClass('hidden');
+				$repwd.removeClass('bg-[#FF3E24]');
+			}
+		}
+
+		$submit.prop('disabled', !(pwdOk && repwdOk));
+	}
+
+	// 포커스가 빠져나올 때 검사
+	$pwd.on('blur', validate);
+	$repwd.on('blur', validate);
+});
+function checkmember()	{
+	const pwdVal = $('#f_passwd').val();
+	
+	if(pwdVal != '')	{
+		$.get('/exec/proajax.php?act=member&han=chpasswd&id={_REQUEST.id}&passwd='+pwdVal, function(response) {
+			if(response.res=='ok')	{
+				alert('비밀번호가 변경되었습니다.');
+				location.replace("/member/?act=login");
+			}	else	{
+				
+			}
+	
+		});
+	}
+}
+</script>
+{#top}
+<main class="space-y-6 container mx-auto px-6 pt-8">
+	<h2 class="text-lg font-medium text-left mb-4 border-b border-b-[#6f6963] pb-4 text-[#6F6963]">비밀번호 찾기</h2>
+	<div class="flex items-center mb-8 text-[#6F6963]">
+		<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-4 h-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left w-4 h-4 mr-3" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+		<div class="text-sm font-medium items-center">이전 단계</div>
+	</div><!--$--><!--/$--><!--$--><!--/$-->
+	<div class="max-w-xl w-[358px] mx-auto text-left ">
+		<section class="mb-12">
+			<h1 class="text-lg font-bold mb-2 text-[#322A24] leading-[26px]">비밀번호 재설정</h1>
+			<p class="text-sm text-[#6F6963] font-medium leading-[22px]">비밀번호를 변경해 주세요.<br>영문, 숫자, 특수문자 포함 8~20자 이내로 입력해 주세요.</p>
+		</section>
+		<div class="mb-10 w-full space-y-2">
+			<h2 class="text-sm mb-2 text-[#322A24] leading-[22px] font-medium">비밀번호</h2>
+			<div class="mb-2">
+					<input type="password" name="passwd" id="f_passwd" placeholder="비밀번호 입력(영문, 숫자, 특수문자 포함 8~20 이내)" class="flex bg-background px-[16px] py-[12px] text-base text-[#322A24] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[358px] h-[46px] border !border-[#C0BCB6] rounded !text-sm placeholder-[#C0BCB6] leading-[2px] undefined">
+					<div class="hidden text-[#FF3E24] text-[10px]" id="f_passwdmsg"></div>
+			</div>
+			<div class="mb-24">
+					<input type="password" name="repasswd" id="f_repasswd" placeholder="비밀번호 확인"  class="flex bg-background px-[16px] py-[12px] text-base text-[#322A24] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[358px] h-[46px] border !border-[#C0BCB6] rounded !text-sm placeholder-[#C0BCB6] leading-[2px] undefined">
+					<div class="hidden text-[#FF3E24] text-[10px]" id="f_repasswdmsg"></div>
+			</div>
+		</div>
+		<div class="text-center mb-4 w-full">
+			<button id="f_next" type="button" onclick="checkmember()" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 w-[358px] h-[46px] bg-[#322A24] disabled:bg-[#DBD7D0] text-[#FDFBF5] text-sm font-bold leading-[22px]" disabled>비밀번호 재설정</button>
+		</div>
+	</div>
+</main>
+{#down}

@@ -1,0 +1,82 @@
+{#header}
+<script src="https://scert.mobile-ok.com/resources/js/index.js"></script>
+<script>
+    //모바일/PC 스크립트 인식 구분
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("#mok_popup").addEventListener("click", function () {
+		const protocol = window.location.protocol.replace(':', ''); // 'http' 또는 'https'
+		const domain = window.location.hostname;
+
+        MOBILEOK.process(protocol+"://"+domain+"/dream/mok_std_requestn.php", "WB", "result");
+    })
+    // document.querySelector("#mok_move").addEventListener("click", function () {
+        // 모바일 전용서비스로 페이지 이동처리 또는 카카오 브라우져 등 새창으로 처리가 어려운, 환경 또는 브라우져에서 처리
+        //MOBILEOK.process("https://이용기관URL/mok/mok_std_request.jsp", "WB", "");
+    // })
+    })
+
+    function result(result) {
+		try {
+			console.log(result);
+			result = JSON.parse(result);
+			console.log(result);
+			
+			if(result.resultCode=='2000')	{
+				
+				
+				alert('변경하였습니다');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+    }
+</script>
+{#top}
+<div class="container mx-auto pt-8">
+	<div class="flex items-center mb-8">
+		<button type="button" onclick="history.back();" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-4 h-4">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left text-[#6F6963] mr-2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+		</button>
+		<div onclick="history.back();" class="text-sm font-medium items-center text-[#6F6963] leading-[22px]">이전으로</div>
+	</div>
+	<div class=" flex flex-col items-center py-8 w-[358px] mx-auto">
+		<section class="w-[358px] mb-12">
+			<h2 class="text-sm font-bold text-[#322A24] leading-[22px] mb-6">로그인 정보</h2>
+			<div class="flex flex-col items-center">
+				<div class="pt-1 mr-3 mb-6">
+					<div class="w-[60px] h-[60px] rounded-full text-[33.71px] flex items-center justify-center font-bold text-white" style="background-color: rgb(233, 230, 224);">B</div>
+				</div>
+				<div class="text-xs text-[#6F6963] mb-6 leading-[20px]">{gmem.id}</div>
+				<a href="/mypage/?act=modpass">
+					<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 !w-[110px] !h-[34px] p-[10px] text-xs font-bold bg-[#322A240A] text-[#6F6963] hover:bg-[#e0ded7] mb-2">비밀번호 변경</button>
+				</a>
+			</div>
+		</section>
+		<section class="w-full max-w-xl mb-12">
+			<h2 class="text-sm font-bold text-[#322A24] mb-6 leading-[22px]">회원 정보</h2>
+			<div class="space-y-6">
+				<div>
+					<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm text-[#322A24] font-medium mb-2 leading-[22px]" for="name">성명</label>
+					<input class="flex border px-[16px] py-[12px] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[358px] h-[46px] rounded text-sm text-[#6F6963] font-medium outline-none bg-[#E9E6E0] !border-[#C0BCB6]" id="name" readonly="" type="text" value="{gmem.name}">
+				</div>
+				<div>
+					<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm text-[#322A24] font-medium mb-2 leading-[22px]" for="birth">생년월일</label>
+					<input class="flex border px-[16px] py-[12px] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[358px] h-[46px] rounded text-sm text-[#6F6963] font-medium outline-none bg-[#E9E6E0] !border-[#C0BCB6]" id="birth" readonly="" type="text" value="{gmem.birthday}">
+				</div>
+				<div>
+					<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm text-[#322A24] font-medium mb-2 leading-[22px]" for="phone">휴대폰 번호</label>
+					<input class="flex border px-[16px] py-[12px] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[358px] h-[46px] rounded text-sm text-[#6F6963] font-medium outline-none bg-[#E9E6E0] !border-[#C0BCB6]" id="phone" readonly="" type="text" value="{gmem.cp}">
+				</div>
+			</div>
+			<button id="mok_popup" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 px-4 w-[358px] mt-10 py-6 h-[46px] text-sm font-bold bg-[#322A24] text-[#FDFBF5] hover:bg-[#48413A]">본인인증으로 정보 수정하기</button>
+		</section>
+		<section class="w-full max-w-xl">
+			<button type="button" onclick="location.href='/exec/proc.php?act=member&act=logout';" class="gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 h-10 px-4 flex items-center justify-start font-bold text-[#2D2926] py-6 bg-transparent hover:cursor-pointer transition">
+				<span class="flex items-center gap-2 text-[#322A24] mr-3 leading-[22px]">로그아웃</span>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right text-[#2D2926]" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+			</button>
+			<button type="button" onclick="location.href='/mypage/?act=memout';" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 text-xs font-bold !text-[#C0BCB6] mt-6 underline bg-transparent leading-[100%]">회원탈퇴</button>
+		</section>
+	</div>
+</div>
+{#down}

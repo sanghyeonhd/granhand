@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Generator" content="EditPlus®">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<link rel="stylesheet" href="/assets/css/globals.css?v=1">
+<title>GRANHAND</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/newscript.js"></script>
+<script>
+$(document).ready(function()	{
+	
+	$(".mypagemenu").on("click",function()	{
+		if($(this).parent().find("ul").css("display")=='none')	{
+			$(this).parent().find("ul").slideDown();
+			$(this).find(".off").addClass("hidden");
+			$(this).find(".open").removeClass("hidden");
+			
+		}	else	{
+			$(this).parent().find("ul").slideUp();
+			$(this).find(".off").removeClass("hidden");
+			$(this).find(".open").addClass("hidden");
+		}
+	});
+});
+</script>
+<style>
+.chk-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  border: 0; clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* (2) 기본 라벨(언체크) — 원하는 해상도에 맞춰 width/height 지정 */
+.chk-img {
+
+  display: inline-block;
+  width: 20px;          /* 아이콘 크기 */
+  height: 20px;
+  background: url('/img/checkbox-unchecked.png') no-repeat center;
+  cursor: pointer;
+}
+
+/* (3) 체크된 상태일 때 이미지 교체 */
+.chk-hidden:checked + .chk-img {
+  background-image: url('/img/checkbox-checked.png');
+}
+
+/* (4) 키보드 포커스 표시(접근성) */
+.chk-hidden:focus + .chk-img {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+</style>

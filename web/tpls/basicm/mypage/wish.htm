@@ -1,0 +1,75 @@
+{#header}
+<Script>
+function set_wish(idx)	{
+	var param = "idx="+idx;
+	param = param + "&stypes=1";
+	
+	console.log('/exec/proajax.php?act=useraction&han=set_addwish&' + param);
+	
+	$.getJSON('/exec/proajax.php?act=useraction&han=set_addwish&' + param, function(result)	{
+		console.log(result);
+		if(result.res=='ok1')	{
+			location.reload();
+		}
+		else if(result.res=='ok2')	{
+			location.reload();	
+		}
+		else if(result.res=='login')	{
+			answer = confirm('로그인이 필요합니다. 로그인 하시겠습니까?');
+			if(answer==true)	{
+				location.href='/member/?act=login&geturl={global.nowurl_en}';
+			}
+		}
+		else	{
+			alert(result.resmsg);
+			
+		}
+	});
+}
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex flex items-center justify-between px-6 items-center">
+			<div class="flex items-center">
+				<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+				<div class="text-lg font-bold">관심상품</div>
+			</div>
+			<div class="flex items-center">
+				<a href="/cont/?act=search" class="pr-6"><img src="/img/m/icon_SEARCH_dark.png"></a>
+				<a href="/order/?act=cart"><img src="/img/m/icon_CART_dark.png"></a>				
+			</div>
+		</div>
+		<div class=" px-6">
+
+			{? sizeof(datalist) == 0 }
+			<div class="py-12 text-center text-[#C0BCB6] text-sm">
+				관심상품이 없어요.
+			</div>
+			{:}
+			<div class="flex justify-between" style="flex-wrap: wrap;">
+				
+				{@ datalist  }	
+				<div class="" style="width:48%;">
+					<div  class="mb-2 relative">
+						<A href="/shop/?act=view&idx={.idx}">
+							<img alt="{.gname}" loading="lazy" width="205" height="200" class="object-cover transition-transform duration-700 group-hover:scale-105"  src="{global.imgdomain}/goods/{.simg1}" style="color: transparent;width:100%">
+						</a>
+						<a href="#none" onclick="event.preventDefault(); set_wish({.idx})" class="z-1" style="position:absolute;top:8px;right:8px;"><img src="/img/m/icon_wish_on.svg"></a>
+					</div>
+					<div>
+						<a href="/shop/?act=view&idx={.idx}">
+							<div class="pb-1 text-sm text-[#111111] font-bold">{.gname}</div>
+							<div class="pb-1 text-xs text-[#C0BCB6] font-normal">{.gname_pre} {.weight}</div>
+							<div class="text-xs text-[#322A24] font-normal">{curr.showdan1}{.account}{curr.showdan2}</div>
+						</a>
+					</div>
+				</div>
+				{/}
+			</div>
+			{/}
+		</div>
+	</div>
+</div>
+{#down}

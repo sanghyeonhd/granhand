@@ -1,0 +1,239 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:30 /home/grandhand/BUILDS/tpls/basicw/order/cart.htm 000012639 */ 
+$TPL_cartlist_1=empty($TPL_VAR["cartlist"])||!is_array($TPL_VAR["cartlist"])?0:count($TPL_VAR["cartlist"]);?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<Script>
+$(document).ready(function()	{
+	$("#allCheck1").on("click",function()	{
+		if($(this).is(":checked"))	{
+			$("input[type=checkbox]").prop('checked', true).val('y');
+			$label = $("input[type=checkbox]").siblings('label');
+			$label.addClass('on');
+			makeaccount();
+		}
+		else	{
+			$("input[type=checkbox]").prop('checked', false).val('n');
+			$label = $("input[type=checkbox]").siblings('label');
+			$label.removeClass('on');
+			makeaccount();
+		}
+		
+	});
+	
+	$(".cartindex").on("click",function()	{
+		makeaccount();	
+	});
+	
+});
+function makeaccount()	{
+	
+	var totalac = 0;
+	var totalc = 0;
+	$(".glists").each(function()	{
+		if($(this).find(".cartindex").is(":checked"))	{
+			totalac = parseInt(totalac) + ( parseInt($(this).data("account")) * parseInt( $(this).find("input[name=ea]").val() ) );
+			totalc = totalc + 1;
+		}
+		
+		var nowac = parseInt($(this).data("account") )* parseInt( $(this).find("input[name=ea]").val() ) ;
+		console.log(nowac);
+		
+	});
+	console.log(totalac);
+	
+<?php if($TPL_VAR["global"]["memislogin"]=='Y'){?>
+	if(totalac<<?php echo $TPL_VAR["global"]["delaccount_member_std"]?> && totalac>0)	{
+		totalac = totalac + <?php echo $TPL_VAR["global"]["delaccount_member"]?>;
+		$("#id_tdac").html(setComma(<?php echo $TPL_VAR["global"]["delaccount_member"]?>));
+	}
+	else	{
+		$("#id_tdac").html(setComma(0));
+	}
+<?php }else{?>
+	if(totalac<<?php echo $TPL_VAR["global"]["delaccount_nomember_std"]?> && totalac>0)	{
+		totalac = totalac + <?php echo $TPL_VAR["global"]["delaccount_nomember"]?>;
+		$("#id_tdac").html(setComma(<?php echo $TPL_VAR["global"]["delaccount_nomember"]?>));
+	}
+	else	{
+		$("#id_tdac").html(setComma(0));
+	}
+<?php }?>
+	$(".f_totalc").html(totalc);
+	$("#id_tac").html(setComma(totalac)+"KRW");
+	$("#id_tact").html(setComma(totalac)+"KRW");
+	
+	if(totalc==0)	{
+		$("#f_buy").prop('disabled', true);
+	}	else	{
+		$("#f_buy").prop('disabled', false);
+	}
+}
+function set_ea(m,idx)	{
+
+	var ea = $("#ea"+idx).val();
+	if(m=='1')	{
+		if(parseInt(ea)-1<=0)	{
+			alert('수량은 0이 될수 없습니다');
+			return;
+		}
+		$("#ea"+idx).val( parseInt($("#ea"+idx).val() ) - 1 );
+		$("#eastr"+idx).html( parseInt($("#ea"+idx).val() ) );
+	}
+	else	{
+		$("#ea"+idx).val( parseInt($("#ea"+idx).val() ) +1 );
+		$("#eastr"+idx).html( parseInt($("#ea"+idx).val() )  );	}
+
+	var param = "ea="+$("#ea"+idx).val()+"&idx="+idx;
+	console.log('/exec/proajax.php?act=useraction&han=set_ea&' + param);
+	$.getJSON('/exec/proajax.php?act=useraction&han=set_ea&' + param, function(result)	{
+		if(result.res=='ok')	{
+			makeaccount();	
+		}
+	});
+
+}
+function setComma(n)	{
+    var reg = /(^[+-]?\d+)(\d{3})/;   // 정규식
+    n += '';                          // 숫자를 문자열로 변환
+    while(reg.test(n))
+    {
+        n = n.replace(reg, '$1' + ',' + '$2');
+    }
+    return n;
+}
+function cart_chbuy(obj)	{
+    var checkObj = $(".cartindex");
+    if(checkObj.length == 0)	{
+        alert($(obj).data("msg_empty"));
+        return;
+    }
+    var k = 0;
+    var str = '';
+    for(var i = 0; i < checkObj.length; i++)	{
+        if(checkObj.eq(i).is(":checked"))	{
+            k = k + 1;
+            str = str + checkObj.eq(i).data("index") + '-';
+        }
+    }
+
+    if(k == 0)	{
+        alert($(obj).data("msg_nocheck"));
+        return;
+    }
+
+	var answer = confirm($(obj).data("msg_question"));
+	if(answer == true)	{
+		location.href = '/order/?act=order_step1&basket_idxs=' + str;
+	}
+	else	{
+		return;
+	}
+}
+function delall()	{
+	var cou = 0;
+	var str = '';
+	$(".cartindex").each(function()	{
+		if($(this).is(":checked"))	{
+			cou++;
+			str = str + $(this).data("index") + '|R|';
+		}
+	});
+	
+	if(cou==0)	{
+		alert('삭제하고자 하는 상품을 체크하세요');
+		return;
+	}
+
+	answer = confirm('삭제하시겠습니까?');
+	if(answer==true)	{
+		location.href='/order/?act=cart&mode=del&str='+str;
+	}
+}
+</script>
+<?php $this->print_("top",$TPL_SCP,1);?>
+
+<div class="container mx-auto pt-8 w-full">
+	<h2 class="text-lg font-medium text-left mb-4 pb-4">장바구니</h2>
+	<section class="w-full py-10 mx-auto">
+		<div class="w-[1120px]">
+			<div class="w-[1120px]">
+				<table class="w-full text-center">
+				<thead class="bg-[#322A2408] border-t border-b border-[#E9E6E0] h-[36px]">
+					<tr class="text-[#6F6963] text-xs font-medium">
+						<th colspan="2" class="p-2 font-medium">
+							<div class="pl-6 flex items-center justify-start gap-3">
+								<input type="checkbox" id="allCheck1" class="chk-hidden agree-item" checked>
+								<label for="allCheck1" class="chk-img"></label>
+								<span class="text-[#6F6963]">전체 선택 (<span class="f_totalc" id="f_totalc"><?php echo $TPL_VAR["cart"]["totalcou"]?></span>/<span><?php echo $TPL_VAR["cart"]["totalcou"]?></span>)</span>
+							</div>
+						</th>
+						<th class="p-2 text-center font-medium">상품 정보</th>
+						<th class="p-2 text-center font-medium">수량</th>
+						<th class="p-2 text-center font-medium">주문 금액</th>
+						<th class="p-2 text-center font-medium">배송 정보</th>
+					</tr>
+				</thead>
+				<tbody class="bg-[#322A2408] w-[1120px]">
+<?php if($TPL_cartlist_1){$TPL_I1=-1;foreach($TPL_VAR["cartlist"] as $TPL_V1){$TPL_I1++;?>
+				<tr class="h-30 text-[#1A1A1A] hover:bg-[#322A2408] relative glists" data-account="<?php echo $TPL_V1["account_pure"]?>">
+					<td colspan="2" class="p-2 h-30">
+						<div class="flex justify-start items-center gap-3">
+							<div class="pl-6">
+								<input type="checkbox" id="check<?php echo $TPL_I1?>" data-index="<?php echo $TPL_V1["idx"]?>" class="cartindex chk-hidden agree-item" checked value='<?php echo $TPL_V1["idx"]?>' data-goods_idx="<?php echo $TPL_V1["goods_idx"]?>">
+								<label for="check<?php echo $TPL_I1?>" class="chk-img"></label>
+							</div>
+							<img alt="Soie Signature Perfume" loading="lazy" width="100" height="97.5" decoding="async" data-nimg="1" class="!w-[100px]"  src="<?php echo $TPL_VAR["global"]["imgdomain"]?>/goods/<?php echo $TPL_V1["simg1"]?>" style="color: transparent;">
+						</div>
+					</td>
+					<td class="p-2">
+						<div class="flex justify-start items-center gap-4">
+							<div class="col-span-4 flex items-center gap-4 space-y-2 text-left">
+								<div class="text-xs space-y-2"><div class="font-bold text-[#322A24]"><?php echo $TPL_V1["gname"]?></div>
+								<div class="text-[#322A244D]"></div>
+								<div class="text-[#322A244D] mb-1">쇼핑백 : 구매안함</div>
+								<div class="font-bold text-[#322A24]"><?php echo $TPL_VAR["curr"]["showdan1"]?><?php echo $TPL_V1["account"]?><?php echo $TPL_VAR["curr"]["showdan2"]?></div>
+							</div>
+						</div>
+					</td>
+					<td class="p-2 flex flex-col items-center justify-center h-30">
+						<div class="flex items-center gap-4 mb-2">
+							<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border bg-background hover:bg-accent hover:text-accent-foreground border-[#322A241A] w-[16px] h-[16px] rounded-full text-[#322A24]" onclick="set_ea('1',<?php echo $TPL_V1["idx"]?>);">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus !w-[8px] !h-[8px] text-[#5E5955]" aria-hidden="true"><path d="M5 12h14"></path></svg>
+							</button>
+							<input type='hidden' name='ea' value='<?php echo $TPL_V1["ea"]?>' id="ea<?php echo $TPL_V1["idx"]?>">
+							<span class="text-sm" id="eastr<?php echo $TPL_V1["idx"]?>"><?php echo $TPL_V1["ea"]?></span>
+							<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground !border-[#322A241A] w-[16px] h-[16px] text-[#322A24] rounded-full font-semibold" onclick="set_ea('2',<?php echo $TPL_V1["idx"]?>);">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus !w-[8px] !h-[8px] text-[#5E5955]" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+							</button>
+						</div>
+						<button class="hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:bg-accent hover:text-accent-foreground py-2 h-8 text-[10px] px-4 text-[#6F6963] bg-[#FDFBF5] !border-[#E9E6E0] font-bold" style="display:none;">옵션 변경</button>
+					</td>
+					<td class="p-2 text-center text-sm font-bold text-[#322A24]"><?php echo $TPL_VAR["curr"]["showdan1"]?><?php echo $TPL_V1["taccount"]?><?php echo $TPL_VAR["curr"]["showdan2"]?></td>
+					<td class="p-2 text-center text-sm font-bold text-[#322A24]">배송비 무료</td>
+				</tr>
+<?php }}?>
+<?php if($TPL_VAR["cart"]["totalcou"]== 0){?>
+				<tr class="h-30 text-[#1A1A1A] hover:bg-[#322A2408] relative">
+					<td colspan="6" class="p-2 text-center text-sm font-bold text-[#322A244D]">장바구니가 비었습니다</td>
+				</tr>
+<?php }?>
+				</tbody>
+				</table>
+			</div>
+		</div>
+<?php if($TPL_VAR["cart"]["totalcou"]!= 0){?>
+		<div class="mt-8 flex justify-between items-center">
+			<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground px-4 py-2 w-[112px] h-[26px] text-[#6F6963] !border-[#E9E6E0] text-[10px] font-bold" onclick="delall()">선택상품 삭제</button>
+			<div class="text-xs text-[#C0BCB6] text-right">배송은 2-5일 정도 소요되며 택배사의 상황에 따라 지연될 수 있습니다. Blotter Card는 우편 발송으로 영업일 기준 5일 이상 소요됩니다.</div>
+		</div>
+		<div class="mt-20 text-sm font-medium border-b pb-3 text-[#6F6963]">총 주문 상품 <span  class="f_totalc"><?php echo $TPL_VAR["cart"]["totalcou"]?></span>개</div>
+		<div class="mt-6 border-b pb-6 w-full">
+			<div class="flex justify-between items-center text-lg font-bold w-full">
+				<div class="text-[#6F6963]"><span  id="id_tac"><?php echo $TPL_VAR["cart"]["totaltaccount"]?> KRW</span> + 배송비 무료 = <span  id="id_tact"><?php echo $TPL_VAR["cart"]["totaltaccount"]?> KRW</span></div>
+				<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 text-sm px-10 py-2 text-white bg-[#322A24] rounded-none w-[358px] h-[46px] disabled:bg-[#DBD7D0]"  id="f_buy" onclick="cart_chbuy(this);" data-msg_empty="<?php echo trscode('CART1')?>" data-msg_nocheck="<?php echo trscode('CART2')?>" data-msg_question="<?php echo trscode('CART3')?>">구매하기 (<span  class="f_totalc"><?php echo $TPL_VAR["cart"]["totalcou"]?></span>)</button>
+			</div>
+		</div>
+<?php }?>
+	</section>
+</div>
+<?php $this->print_("down",$TPL_SCP,1);?>

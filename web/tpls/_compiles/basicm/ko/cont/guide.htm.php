@@ -1,0 +1,132 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:27 /home/grandhand/BUILDS/tpls/basicm/cont/guide.htm 000006917 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script>
+function ck(obj,m)	{
+	if(m=='1')	{
+		$("#pfi2").removeClass("hidden");
+		$("#img11").attr("src","/img/m/icon_CHECK_darkn.svg");
+		$("#img12").attr("src","/img/m/icon_SPACE_darkn.svg");
+	}
+	if(m=='2')	{
+		$("#pfi3").removeClass("hidden");
+		$("#img21").attr("src","/img/m/icon_CHECK_darkn.svg");
+		$("#img22").attr("src","/img/m/icon_SPACE_darkn.svg");
+	}
+	if(m=='3')	{
+		$("#pfi4").removeClass("hidden");	
+		$("#img31").attr("src","/img/m/icon_CHECK_darkn.svg");
+		$("#img32").attr("src","/img/m/icon_SPACE_darkn.svg");
+		
+	}
+	if(m=='4')	{
+		$("#pbtn").removeClass("hidden");
+		$("#img41").attr("src","/img/m/icon_CHECK_darkn.svg");
+	}
+	
+	$(obj).parent().find("button").removeClass("bg-[#322A24]");
+	$(obj).parent().find("button").removeClass("text-[#FFFFFF]");	
+	$(obj).parent().find("button").addClass("text-[#231815B2]");
+	$(obj).removeClass("text-[#231815B2]");
+	$(obj).addClass("bg-[#322A24]");
+	$(obj).addClass("text-[#FFFFFF]");	
+	
+	
+}
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center  fixed justify-between top-0 left-0 right-0">
+			<div class="text-lg font-bold">GUIDE</div>
+			<div class="flex items-center">
+				<a href="/cont/?act=search" class="pr-6"><img src="/img/m/icon_SEARCH_dark.png"></a>
+				<a href="/order/?act=cart"><img src="/img/m/icon_CART_dark.png"></a>				
+			</div>
+		</div>
+		<div style="padding-top:58px;">
+			<div class="h-[52px] flex items-center justify-center" style="background-color:#322A2408">
+				<div class="text-center text-[#6F6963] text-sms font-medium">✨ 원하시는 향을 추천해 드립니다. 아래 항목을 모두 선택해 주세요.</div>
+			</div>
+		</div>
+		<div class="pt-8 pl-6">
+			<div class="flex items-stretch mb-6">
+				<div class="flex flex-col justify-between">
+					<A href="#none" class="pb-6"><img id="img11" src="/img/m/icon_CHECK_dark.svg"></a>
+					<div><img id="img12" src="/img/m/icon_SPACE_dark.svg"></div>
+				</div>
+				<div class="pl-6 min-w-0" style="flex:1">
+					<div style="border-bottom:1px solid #322A241A;">
+						<div class="text-[#6F6963] text-sm font-bold -6 pb-2">1. 어떤 용도로 사용하시나요?</div>
+						<div class="flex  overflow-x-auto whitespace-nowrap pb-2">
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,1);">선물할 거예요</button>
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,1);">제가 쓸 거에요</button>							
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="flex items-stretch mb-6">
+				<div class="flex flex-col justify-between">
+					<A href="#none" class="pb-6"><img id="img21" src="/img/m/icon_CHECK_dark.svg"></a>
+					<div><img id="img22" src="/img/m/icon_SPACE_dark.svg"></div>
+				</div>
+				<div class="pl-6 min-w-0" style="flex:1">
+					<div style="border-bottom:1px solid #322A241A;">
+						<div class="text-[#6F6963] text-sm font-bold -6 pb-2">2. 어떤 계절에 맞는 향을 찾으세요?</div>
+						<div id="pfi2" class="flex hidden overflow-x-auto whitespace-nowrap pb-2">
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,2);">여름</button>
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,2);">가을&겨울</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,2);">계절 상관없어요</button>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="flex items-stretch mb-6">
+				<div class="flex flex-col justify-between">
+					<A href="#none" class="pb-6"><img id="img31" src="/img/m/icon_CHECK_dark.svg"></a>
+					<div><img id="img32" src="/img/m/icon_SPACE_dark.svg"></div>
+				</div>
+				<div class="pl-6 min-w-0" style="flex:1">
+					<div style="border-bottom:1px solid #322A241A;">
+						<div class="text-[#6F6963] text-sm font-bold -6 pb-2">3. 원하시는 계열을 선택해 주세요.</div>
+						<div id="pfi3" class="flex hidden overflow-x-auto whitespace-nowrap pb-2">
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,3);">플로럴</button>
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,3);">프루티</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,3);">시트러스</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,3);">우디</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,3);">그린</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,3);">워터리</button>	
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="flex items-stretch mb-6">
+				<div class="flex flex-col justify-between">
+					<A href="#none" class="pb-6"><img id="img41" src="/img/m/icon_CHECK_dark.svg"></a>
+				</div>
+				<div class="pl-6 min-w-0" style="flex:1">
+					<div style="border-bottom:1px solid #322A241A;">
+						<div class="text-[#6F6963] text-sm font-bold -6 pb-2">4. 원하시는 분위기를 선택해 주세요.</div>
+						<div id="pfi4" class="flex hidden overflow-x-auto whitespace-nowrap pb-2">
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,4);">#청순함</button>
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,4);">#봄비</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,4);">#바캉스</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,4);">#코튼</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,4);">#홍차</button>	
+							<button type="button" class="px-2 py-1 text-[#231815B2] text-xs font-normal mr-2" onclick="ck(this,4);">#우아함</button>							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pt-10 pr-6 ">
+			
+				<button id="pbtn" onclick="location.href='/cont/?act=guideresult'" type="button" class="hidden items-center h-[46px] text-[#322A24] text-sm bg-[#FFFFFF]" style="border:1px solid #C0BCB6;width:100%">결과보기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $this->print_("down",$TPL_SCP,1);?>

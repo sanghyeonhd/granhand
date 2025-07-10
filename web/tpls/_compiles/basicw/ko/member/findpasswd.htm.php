@@ -1,0 +1,114 @@
+<?php /* Template_ 2.2.7 2025/07/10 09:05:08 /home/grandhand/BUILDS/tpls/basicw/member/findpasswd.htm 000009442 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script src="https://scert.mobile-ok.com/resources/js/index.js"></script>
+<script>
+    //모바일/PC 스크립트 인식 구분
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("#mok_popup").addEventListener("click", function () {
+		const protocol = window.location.protocol.replace(':', ''); // 'http' 또는 'https'
+		const domain = window.location.hostname;
+
+        MOBILEOK.process(protocol+"://"+domain+"/dream/mok_std_requestn.php", "WB", "result");
+    })
+    // document.querySelector("#mok_move").addEventListener("click", function () {
+        // 모바일 전용서비스로 페이지 이동처리 또는 카카오 브라우져 등 새창으로 처리가 어려운, 환경 또는 브라우져에서 처리
+        //MOBILEOK.process("https://이용기관URL/mok/mok_std_request.jsp", "WB", "");
+    // })
+    })
+
+    function result(result) {
+		const $id     = $('#f_id');
+		try {
+			console.log(result);
+			result = JSON.parse(result);
+			console.log(result);
+			
+			if(result.resultCode=='2000')	{
+				location.replace('/member/?act=findpasswdresult&id='+$id.val().trim()+"&userphone="+result.userphone);	
+			}
+		} catch (error) {
+			console.log(error);
+		}
+    }
+
+$(document).ready(function () {
+	
+	
+	const $id     = $('#f_id');
+	const $submit = $('#mok_popup');
+	const $idMsg   = $('#f_idmsg');
+
+	const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+	function validate() {
+		const idVal  = $id.val().trim();
+
+		
+		/* --- 아이디 검증 --- */
+		let idOk = false;
+		if (idVal === '') {
+			$idMsg.text('아이디를 입력하세요.').removeClass('hidden');
+			$id.addClass('bg-[#FF3E24]');
+		} else if (!emailReg.test(idVal)) {
+			$idMsg.text('이메일 형식이 올바르지 않습니다.').removeClass('hidden');
+			$id.addClass('bg-[#FF3E24]');
+		} else {
+			idOk = true;
+			$idMsg.addClass('hidden');
+			$id.removeClass('bg-[#FF3E24]');
+		}
+
+		
+		$submit.prop('disabled', !idOk);
+	}
+
+	// 포커스가 빠져나올 때 검사
+	$id.on('blur', validate);
+
+
+	
+});
+</script>
+<?php $this->print_("top",$TPL_SCP,1);?>
+
+<main class="space-y-6 container mx-auto px-6 pt-8">
+	<h2 class="text-lg font-medium text-left mb-4 border-b border-b-[#6f6963] pb-4 text-[#6F6963]">비밀번호 찾기</h2>
+	<div class="flex items-center mb-8 text-[#6F6963]">
+		<button type="button" onclick="history.back();" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-4 h-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left w-4 h-4 text-[#6F6963] mr-3" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+		<div class="text-sm items-center text-[#6F6963] font-[500]" onclick="history.back();">이전 단계</div>
+	</div>
+	<div class="max-w-xl w-[358px] mx-auto text-left " id="main">
+		<section class="mb-64">
+			<h1 class="text-lg font-bold mb-2 text-[#322A24] leading-[26px]">비밀번호 찾기</h1>
+		</section>
+		<div class="flex items-center mb-8 gap-3">
+			<a class="w-1/2" href="#none" onclick="event.preventDefault(); $('#main').addClass('hidden'); $('#find1').removeClass('hidden');">
+				<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 w-full h-[46px] border bg-[#322A24] text-[#FDFBF5] font-bold text-sm leading-[22px]">내국인</button>
+			</a>
+			<a class="w-1/2" href="#none" onclick="event.preventDefault(); $('#main').addClass('hidden'); $('#find2').removeClass('hidden');">
+				<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 px-4 py-2 w-full h-[46px] border text-[#322A24] text-sm font-bold leading-[22px] !border-[#C0BCB6]">외국인</button>
+			</a>
+		</div>
+	</div>
+	<div class="max-w-xl w-[358px] mx-auto text-left hidden" id="find1">
+		<section class="mb-12">
+			<h1 class="text-lg font-bold mb-2 text-[#322A24] leading-[26px]">비밀번호 찾기</h1>
+			<div class="mt-4">
+				<p class="text-sm text-[#6F6963] font-medium leading-[22px]">가입한 아이디(이메일)을 입력해 주세요.<br>휴대폰 본인인증을 통해 아이디(이메일)를 확인합니다.</p>
+			</div>
+		</section>
+		<div class="mb-36 w-full">
+			<h2 class="text-sm mb-2 font-medium text-[#322A24] leading-[22px]">아이디</h2>
+			<input class="flex border rounded-md bg-background text-base text-[#322A24] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[357px] h-[46px] !border-[#C0BCB6] placeholder:text-[#C0BCB6] px-[16px] py-[12px] undefined" placeholder="이메일을 입력해 주세요." type="text" value="" name="email" id="f_id">
+			<div class="hidden text-[#FF3E24] text-[10px]" id="f_idmsg"></div>
+		</div>
+		<div class="text-center mb-8 w-full">
+			<button type="button" id="mok_popup" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 bg-[#322A24] disabled:bg-[#DBD7D0] text-[#FDFBF5] h-[46px] text-sm font-bold w-[358px] leading-[22px]" disabled>다음</button>
+		</div>
+	</div>
+	
+	
+	<div class="max-w-xl w-[358px] mx-auto text-left hidden" id="find2"><section class="mb-10"><h1 class="text-base font-medium mb-2 text-[#322A24]">휴대폰 인증을 해주세요.</h1></section><div class="text-left mb-8 w-full"><div class="mb-4"><label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block mb-2 text-sm font-medium leading-[22px] text-[#322A24]">휴대폰 번호</label><div class="flex gap-2 w-fullitems-start"><div class="flex-grow"><input class="flex bg-background px-[16px] py-[12px] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[257px] h-[46px] border !border-[#C0BCB6] rounded text-[#7B736A] text-sm placeholder-[#C2BDB6] undefined" placeholder="+1 10 123 4567" type="text" value="" name="phone"></div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 h-[46px] w-[88px] px-[18px] py-[12px] bg-[#302c26] text-sm text-[#FDFBF5] font-bold rounded cursor-pointer leading-[22px] disabled:bg-[#DBD7D0] flex-shrink-0" disabled="">인증요청</button></div></div><div class="mb-10"><label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block mb-2 font-medium text-sm text-[#322A24]">인증번호</label><div class="relative"><input class="flex bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[357px] h-[46px] border !border-[#C0BCB6] rounded text-[#7B736A] px-[16px] py-[12px] text-sm placeholder-[#C2BDB6] undefined" placeholder="ex) 000000" type="text" value="" name="verify"></div></div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 w-[358px] h-[46px] bg-[#322A24] text-[#FDFBF5] cursor-pointer font-bold text-sm disabled:bg-[#DBD7D0] leading-[22px]" disabled="">다음</button></div></div>
+</main>
+<?php $this->print_("down",$TPL_SCP,1);?>

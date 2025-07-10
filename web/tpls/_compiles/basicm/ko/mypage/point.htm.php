@@ -1,0 +1,95 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:28 /home/grandhand/BUILDS/tpls/basicm/mypage/point.htm 000005522 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script>
+function showinfo()	{
+	if($("#infobg").css("display") == "none")	{
+		$("#infobg").removeClass("hidden");	
+		$("#infocnt").removeClass("hidden");
+		
+		$("body").addClass("overflow-hidden");
+	}	else	{
+		$("#infobg").addClass("hidden");	
+		$("#infocnt").addClass("hidden");
+		$("body").removeClass("overflow-hidden");		
+	}
+}
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center">
+			<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+			<div class="text-lg font-bold">포인트</div>
+		</div>
+		<div class="pt-6 px-6">
+			<div class="shadow-sm rounded-xl mb-8 px-6 py-6">
+				<div class="flex items-start justify-between pb-6">
+					<div class="text-sm text-[#322A24] font-medium">포인트</div>
+					<div class="text-[32px] text-[#322A24] font-bold">0</div>
+				</div>
+				<div style="height:1px;border-top:1px dashed #E9E6E0"></div>
+				<div class="pt-4 flex items-center justify-between">
+					<div class="text-xs text-[#C0BCB6] font-medium">이번 달 소명 예정 포인트</div>
+					<div class="text-xs text-[#322A24] font-medium">0</div>
+				</div>
+			</div>
+			<div class="h-[54px] flex items-center justify-between">
+				<div class="text-sm text-[#322A24] font-bold">포인트 상세 내역</div>
+				<a href="#none" onclick="event.preventDefault(); showinfo()"><img src="/img/m/icon_HELP.png"></a>
+			</div>
+			<div class="h-[54px] flex items-center">
+				
+				<a href="/mypage/?act=point" class="text-xs font-bold <?php if(!$_REQUEST["order"]){?>text-[#322A24]<?php }else{?>text-[#C0BCB6]<?php }?>">전체</a>
+				<a href="/mypage/?act=point&order=1" class="pl-4 text-xs font-bold  <?php if($_REQUEST["order"]== 1){?>text-[#322A24]<?php }else{?>text-[#C0BCB6]<?php }?>">적립</a>
+				<a href="/mypage/?act=point&order=2" class="pl-4 text-xs font-bold  <?php if($_REQUEST["order"]== 2){?>text-[#322A24]<?php }else{?>text-[#C0BCB6]<?php }?>">사용</a>
+				<a href="/mypage/?act=point&order=3" class="pl-4 text-xs font-bold  <?php if($_REQUEST["order"]== 3){?>text-[#322A24]<?php }else{?>text-[#C0BCB6]<?php }?>">소멸</a>				
+			</div>
+			<div class="">
+				<div class="py-20 text-center text-[#C0BCB6] text-sm">
+					포인트 내역이 없어요.
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="infobg" class="fixed z-20 h-[100vh] top-0 bottom-0 left-0 right-0 hidden" style="background-color:rgba(0,0,0,0.4);" onclick="showinfo()">
+
+</div>
+<div id="infocnt" class="fixed z-50  bg-[#FDFBF5] bottom-0 left-0 right-0 popup-layer hidden px-6 pb-6">
+	<div class=" h-[46px] flex justify-end items-center">
+		<a href="#none" onclick="event.preventDefault(); showinfo();">
+			<svg class="downupPopup-kapat" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000"	stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+		</a>
+	</div>
+	<div class="text-[#6F6963] font-bold text-base pb-4">포인트 사용 안내</div>
+	<div class="pb-4">
+		<div class="font-bold mb-2 text-sms text-[#322A24]">1.포인트 적립</div>
+		<ul class="list-disc pl-6 space-y-1">
+			<li class="text-sms text-[#6F6963]">구매 및 이벤트 참여를 통해 포인트를 적립 받을 수 있습니다.</li>
+			<li class="text-sms text-[#6F6963]">적립 기준은 참여 이벤트마다 상이합니다.</li>
+			<li class="text-sms text-[#6F6963]">그랑핸드&amp;콤포타블 온/오프라인 결제에 공통으로 적용됩니다.</li>
+			<li class="text-sms text-[#6F6963]">구매로 인한 적립은 소비자의 구매확정 또는 배송 완료일 기준 7일 이후에 자동 적립됩니다.</li>
+		</ul>
+	</div>
+	<div class="pb-4">
+		<div class="font-bold mb-2 text-sms text-[#322A24]">2.사용/유효기간</div>
+		<ul class="list-disc pl-6 space-y-1">
+			<li class="text-sms text-[#6F6963]">최소 1,000 포인트부터 사용할 수 있으며, 포인트는 유효기간 임박 순으로 사용됩니다.</li>
+			<li class="text-sms text-[#6F6963]">포인트는 타인에게 선물 및 양도가 불가합니다.</li>
+			<li class="text-sms text-[#6F6963]">주문 취소로 인한 포인트 환급 시, 유효기간이 긴 순으로 환급 처리됩니다.</li>
+			<li class="text-sms text-[#6F6963]">구입한 상품 환불/반품 시 받은 포인트는 자동 소멸되며, 반품 배송비 혹은 다른 결제 용도로 사용이 불가합니다.</li>
+			<li class="text-sms text-[#6F6963]">모든 포인트는 지급 시 유효기간 명시하고, 명시되지 않은 경우 지급일로부터 1년 내 사용을 기준으로 합니다.</li>
+		</ul>
+	</div>
+	<div>
+		<div class="font-bold mb-2 text-sms text-[#322A24]">3.소멸</div>
+		<ul class="list-disc pl-6 space-y-1">
+			<li class="text-sms text-[#6F6963]">포인트를 사용하지 않으면 유효기간 도래 시 자동 소멸됩니다.</li>
+			<li class="text-sms text-[#6F6963]">회원 탈퇴 시, 해당 회원이 보유한 포인트는 즉시 소멸되며, 서비스에 재가입하더라도 소멸된 포인트는 복구되지 않습니다.</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:29 /home/grandhand/BUILDS/tpls/basicw/mypage/memout.htm 000005665 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<?php $this->print_("top",$TPL_SCP,1);?>
+
+<div class="container mx-auto pt-8">
+	<div class="flex items-center mb-8">
+		<button type="button" onclick="history.back();" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-4 h-4">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left text-[#6F6963] mr-2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+		</button>
+		<div onclick="history.back();" class="text-sm font-medium items-center text-[#6F6963] leading-[22px]">이전으로</div>
+	</div>
+	<div class="max-w-md w-[358px] space-y-6 mx-auto mt-10 ">
+		<div class="mb-12">
+			<h2 class="font-medium text-[#322A24] leading-[24px]">그랑핸드를 떠나시려는 이유를 알려주세요.</h2>
+		</div>
+		<div role="radiogroup" aria-required="false" dir="ltr" class="grid gap-2" tabindex="0" style="outline: none;">
+			<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-start gap-3 cursor-pointer space-y-4">
+				<button type="button" role="radio" aria-checked="false" data-state="unchecked" value="no_interest" class="aspect-square rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-[14px] h-[14px]" tabindex="-1" data-radix-collection-item=""></button>
+				<span class="text-xs font-bold text-[#6F6963] leading-[20px]">원하는 상품이 없어요.</span>
+			</label>
+			<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-start gap-3 cursor-pointer space-y-4">
+				<button type="button" role="radio" aria-checked="false" data-state="unchecked" value="reduce" class="aspect-square rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-[14px] h-[14px]" tabindex="-1" data-radix-collection-item=""></button>
+				<span class="text-xs font-bold text-[#6F6963] leading-[20px]">과도한 쇼핑을 자제하고 싶어요.</span>
+			</label>
+			<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-start gap-3 cursor-pointer space-y-4">
+				<button type="button" role="radio" aria-checked="false" data-state="unchecked" value="limited" class="aspect-square rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-[14px] h-[14px]" tabindex="-1" data-radix-collection-item=""></button>
+				<span class="text-xs font-bold text-[#6F6963] leading-[20px]">쿠폰/포인트 등의 혜택이 너무 적어요.</span>
+			</label>
+			<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-start gap-3 cursor-pointer space-y-4">
+				<button type="button" role="radio" aria-checked="false" data-state="unchecked" value="different" class="aspect-square rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-[14px] h-[14px]" tabindex="-1" data-radix-collection-item=""></button>
+				<span class="text-xs font-bold text-[#6F6963] leading-[20px]">다른 계정으로 가입하고 싶어요.</span>
+			</label>
+			<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-start gap-3 cursor-pointer space-y-4">
+				<button type="button" role="radio" aria-checked="false" data-state="unchecked" value="manually" class="aspect-square rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-[14px] h-[14px]" tabindex="-1" data-radix-collection-item=""></button>
+				<span class="text-xs font-bold text-[#6F6963] leading-[20px]">직접 입력</span>
+			</label>
+		</div>
+		<div class="mt-6 pb-6">
+			<div class="flex justify-center items-center text-lg font-semibold">
+				<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 w-full text-sm font-bold px-10 py-2 text-[#FDFBF5] bg-[#322A24] rounded-none min-w-32 h-[46px]">탈퇴하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $this->print_("down",$TPL_SCP,1);?>

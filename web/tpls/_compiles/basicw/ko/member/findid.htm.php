@@ -1,0 +1,88 @@
+<?php /* Template_ 2.2.7 2025/07/10 08:54:25 /home/grandhand/BUILDS/tpls/basicw/member/findid.htm 000008660 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script src="https://scert.mobile-ok.com/resources/js/index.js"></script>
+<script>
+    //모바일/PC 스크립트 인식 구분
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("#mok_popup").addEventListener("click", function () {
+		const protocol = window.location.protocol.replace(':', ''); // 'http' 또는 'https'
+		const domain = window.location.hostname;
+
+        MOBILEOK.process(protocol+"://"+domain+"/dream/mok_std_requestn.php", "WB", "result");
+    })
+    // document.querySelector("#mok_move").addEventListener("click", function () {
+        // 모바일 전용서비스로 페이지 이동처리 또는 카카오 브라우져 등 새창으로 처리가 어려운, 환경 또는 브라우져에서 처리
+        //MOBILEOK.process("https://이용기관URL/mok/mok_std_request.jsp", "WB", "");
+    // })
+    })
+
+    function result(result) {
+		try {
+			console.log(result);
+			result = JSON.parse(result);
+			console.log(result);
+			
+			if(result.resultCode=='2000')	{
+				
+				
+				location.replace('/member/?act=findidresult&userphone='+result.userphone);	
+			}
+		} catch (error) {
+			console.log(error);
+		}
+    }
+</script>
+<?php $this->print_("top",$TPL_SCP,1);?>
+
+<main class="space-y-6 container mx-auto  pt-8">
+	<h2 class="text-lg font-[500] text-left mb-4 border-b !border-b-[#E9E6E0] pb-4 text-[#6F6963]">아이디 찾기</h2>
+	<div class="flex items-center mb-8">
+		<button type="button" onclick="history.back();" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-4 h-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left w-4 h-4 text-[#6F6963] mr-3" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+		<div class="text-sm items-center text-[#6F6963] font-[500]" onclick="history.back();">이전 단계</div>
+	</div>
+	<div class="max-w-xl w-[358px] mx-auto text-left " id="main">
+		<section class="mb-64">
+			<h1 class="text-lg font-bold mb-2 text-[#322A24]">아이디 찾기</h1>
+		</section>
+		<div class="flex items-center mb-8 gap-3">
+			<a class="w-1/2" href="#none" onclick="event.preventDefault(); $('#main').addClass('hidden'); $('#find1').removeClass('hidden');">
+				<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 w-full border bg-[#322A24] text-white h-[46px]">내국인</button>
+			</a>
+			<a class="w-1/2" href="#none" onclick="alert('준비중입니다');">
+				<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 px-4 py-2 w-full border !border-[#C0BCB6] text-[#322A24] h-[46px]">외국인</button>
+			</a>
+		</div>
+		<div class="space-y-2" href="#none" onclick="event.preventDefault(); $('#main').addClass('hidden'); $('#find2').removeClass('hidden');">
+			<div class="space-y-2 w-full bg-[#322A2408]">
+				<div class="text-xs text-[#6F6963] p-4 px-5">
+					<ul class="list-disc space-y-1.5 px-4 font-medium text-[10px] undefined">
+						<li>SNS 계정으로 가입하신 회원님은 아이디 찾기가 불가능합니다.</li>
+						<li>가입하신 계정이 기억나지 않을 경우 hello@granhand.com으로 문의 하시기 바랍니다.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="max-w-xl w-[358px] mx-auto text-left hidden" id="find1">
+		<section class="mb-64">
+			<h1 class="text-lg font-bold mb-2 text-[#322A24]">아이디 찾기</h1>
+			<p class="text-sm text-[#6F6963] font-medium">휴대폰 본인인증을 통해 아이디(이메일)을 확인합니다.</p>
+		</section>
+		<div class="text-center mb-8 w-full">
+			<button type="button" id="mok_popup"  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 bg-[#2b2119] text-white w-[358px] h-[46px] text-base font-semibold">휴대폰 인증</button>
+		</div>
+		<div class="space-y-2">
+			<div class="space-y-2 w-full bg-[#322A2408]">
+				<div class="text-xs text-[#6F6963] p-4 px-5">
+					<ul class="list-disc space-y-1.5 px-4 font-medium text-[10px] undefined">
+						<li>SNS 계정으로 가입하신 회원님은 아이디 찾기가 불가능합니다.</li>
+						<li>가입하신 계정이 기억나지 않을 경우 hello@granhand.com으로 문의 하시기 바랍니다.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="max-w-xl w-[358px] mx-auto text-left hidden" id="find2"><div class="mb-10"><h1 class="text-base font-medium mb-2 leading-[24px] text-[#322A24]">휴대폰 인증을 해주세요.</h1></div><div class="text-left mb-8 w-full"><div class="mb-4"><label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block mb-2 font-medium text-sm text-[#322A24] leading-[22px]">휴대폰 번호</label><div class="flex gap-2 w-full items-start mt-2"><div class="flex-grow"><input class="flex bg-background px-[16px] py-[12px] text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[257px] border !border-[#C0BCB6] rounded text-[#7B736A] !text-sm placeholder-[#C0BCB6] h-[46px] undefined" placeholder="+1 10 123 4567" type="text" value="" name="phone"></div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 w-[88px] h-[46px] py-5 bg-[#322A24] text-white font-bold text-sm rounded cursor-pointer disabled:bg-[#DBD7D0] flex-shrink-0" disabled="">인증요청</button></div></div><div class="mb-10"><label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block mb-2 font-medium text-sm text-[#322A24] leading-[22px]">인증번호</label><div class="relative mt-2"><input class="flex bg-background text-[#322A24] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-[357px] border !border-[#C0BCB6] rounded px-4 py-4 text-sm placeholder-[#C0BCB6] h-[46px] undefined" placeholder="ex) 000000" type="text" value="" name="verify"></div></div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 w-[358px] h-[46px] bg-[#322A24] text-[#FDFBF5] cursor-pointer font-bold text-sm disabled:bg-[#DBD7D0] px-[24px] py-[12px]" disabled="">다음</button></div></div>
+</main>
+<?php $this->print_("down",$TPL_SCP,1);?>

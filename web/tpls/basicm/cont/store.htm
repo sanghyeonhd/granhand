@@ -1,0 +1,37 @@
+{#header}
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="fixed top-0 left-0 right-0 z-20 bg-[#FDFBF4]">
+			<div class="h-[58px] flex px-6 items-center ">
+				<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+				<div class="text-lg font-bold">STORE</div>
+			</div>
+			<div class="h-[54px] flex px-6 items-center ">
+				{@brlist }
+				<a href="/cont/?act=store&brand_idx={.idx}" class="pr-4 font-bold {? .issel=='Y'}text-[#322A24]{:}text-[#C0BCB6]{/} text-sm">{.brandname}</a>
+				{/}
+			</div>
+			<div class="h-[54px] flex px-6 items-center">
+				{@storelist }
+				<a href="/cont/?act=store&brand_idx={.brand_idx}&store_idx={.idx}" class="pr-4 font-bold {? .issel=='Y'}text-[#322A24]{:}text-[#C0BCB6]{/} text-xs">{.name}</a>
+				{/}
+			</div>
+		</div>
+		<div class="px-6" style="padding-top:174px">
+			<div class="flex items-center pb-3">
+				<div class="text-[#322A24] text-xs font-medium pr-2">{store.fullname}</div>
+				<div class="text-[#C0BCB6] text-xs font-normal pr-2">{store.addr}</div>
+			</div>
+			{@ store.imgs }
+			<div class="pb-4">
+				<img src="{global.imgdomain}/store/{.filename}" style="width:100%;">
+			</div>
+			{/}
+		</div>
+		
+	</div>
+</div>
+</body>
+</html>

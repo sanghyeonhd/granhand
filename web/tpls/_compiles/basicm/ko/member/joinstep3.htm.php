@@ -1,0 +1,58 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:27 /home/grandhand/BUILDS/tpls/basicm/member/joinstep3.htm 000002429 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script src="https://scert.mobile-ok.com/resources/js/index.js"></script>
+<script>
+    //모바일/PC 스크립트 인식 구분
+    document.addEventListener("DOMContentLoaded", function () {
+		const protocol = window.location.protocol.replace(':', ''); // 'http' 또는 'https'
+		const domain = window.location.hostname;
+<?php if($TPL_VAR["global"]["isapp"]=="Y"){?>
+		document.querySelector("#mok_move").addEventListener("click", function () {
+        // 모바일 전용서비스로 페이지 이동처리 또는 카카오 브라우져 등 새창으로 처리가 어려운, 환경 또는 브라우져에서 처리
+        MOBILEOK.process(protocol+"://"+domain+"/dream/mok_std_request.php?pre_idx=<?php echo $_REQUEST["pre_idx"]?>", "WB", "");
+     })
+    
+<?php }else{?>
+		document.querySelector("#mok_popup").addEventListener("click", function () {
+			MOBILEOK.process(protocol+"://"+domain+"/dream/mok_std_request.php?pre_idx=<?php echo $_REQUEST["pre_idx"]?>", "WB", "result");
+		})
+<?php }?>
+	})
+    function result(result) {
+		try {
+			console.log(result);
+			result = JSON.parse(result);
+			console.log(result);
+			
+			if(result.resultCode=='2000')	{
+				location.replace('/member/?act=joinstep4');	
+			}
+		} catch (error) {
+			console.log(error);
+		}
+    }
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center">
+			<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+		</div>
+		<div style="height:4px;">
+			<div style="margin-left:50%;width:25%;background-color:#6F6963;height:4px;"></div>
+		</div>
+		<div class="px-6 pt-12">
+			<div class="text-[#322A24] text-lg font-bold">본인인증을 진행해 주세요.</div>
+			<div class="pt-4 text-[#6F6963] font-medium text-sm pb-10">안전한 이용을 위해 최초 한 번 본인인증을 진행해요.</div>
+			
+		</div>
+		
+	</div>
+</div>
+<div class="fixed px-6" style="bottom:44px;left:0;right:0;">
+	<button type="button" id="mok_popup" class="w-full block h-[46px] text-sm text-[#FFFFFF] font-bold disabled:opacity-15 bg-[#322A24]">본인인증하고 가입하기</button>
+</div>
+</body>
+</html>

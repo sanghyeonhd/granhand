@@ -1,0 +1,135 @@
+{#header}
+<style>
+.chk-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  border: 0; clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* (2) 기본 라벨(언체크) — 원하는 해상도에 맞춰 width/height 지정 */
+.chk-img {
+
+  display: inline-block;
+  width: 20px;          /* 아이콘 크기 */
+  height: 20px;
+  background: url('/img/checkbox-unchecked.png') no-repeat center;
+  cursor: pointer;
+}
+
+/* (3) 체크된 상태일 때 이미지 교체 */
+.chk-hidden:checked + .chk-img {
+  background-image: url('/img/checkbox-checked.png');
+}
+
+/* (4) 키보드 포커스 표시(접근성) */
+.chk-hidden:focus + .chk-img {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+</style>
+<Script>
+$(document).ready(function () {
+	const $agreeAll  = $('#agreeall');
+	const $agreeEach = $('.agree-item');
+	const $fNext     = $('#f_next');
+
+	// 1. "전체 동의" 체크 → 모든 항목 체크/해제
+	$agreeAll.on('change', function () {
+		const checked = $(this).is(':checked');
+		$agreeEach.prop('checked', checked);
+		updateNextButton(); // 버튼 상태도 반영
+	});
+
+	// 2. 개별 항목 중 하나라도 변경되면 전체동의 상태 업데이트 + 버튼 상태도 반영
+	$agreeEach.on('change', function () {
+		const allChecked = $agreeEach.length === $agreeEach.filter(':checked').length;
+		$agreeAll.prop('checked', allChecked);
+		updateNextButton();
+	});
+
+	// 3. 버튼 활성화 조건 검사
+	function updateNextButton() {
+		const allRequiredChecked =
+			$('#agree1').is(':checked') &&
+			$('#agree2').is(':checked') &&
+			$('#agree3').is(':checked');
+		console.log(allRequiredChecked);
+		$fNext.prop('disabled', !allRequiredChecked);
+	}
+});
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center">
+			<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+		</div>
+		<div style="height:4px;">
+			<div style="width:25%;background-color:#6F6963;height:4px;"></div>
+		</div>
+		<div class="px-6 pt-4">
+			<div class="text-base text-[#322A24] font-medium">그랑핸드 서비스 이용 약관에 동의해 주세요.</div>
+			<div class="pt-8 flex pb-6">
+				<div class="">
+					<input type="checkbox" id="agreeall" class="chk-hidden agree-item">
+					<label for="agreeall" class="chk-img"></label>
+				</div>
+				<div class="pl-4 text-base text-[#6F6963] font-bold">모두 동의 (선택 정보 포함)</div>
+			</div>
+			<div class="pb-6" style="height:1px;border-top:1px dashed #DBD7D0;width:100%;"></div>
+			<div class="flex pb-4 flex items-center">
+				<div class="">
+					<input type="checkbox" id="agree1" class="chk-hidden agree-item">
+					<label for="agree1" class="chk-img"></label>
+				</div>
+				<div class="pl-4 text-sm text-[#6F6963] font-normal">(필수)</div>
+				<div class="pl-1 text-sm text-[#6F6963] font-bold">만 14세 이상입니다</div>
+			</div>
+			<div class="flex pb-4 flex items-center">
+				<div class="">
+					<input type="checkbox" id="agree2" class="chk-hidden agree-item">
+					<label for="agree2" class="chk-img"></label>
+				</div>
+				<div class="pl-4 text-sm text-[#6F6963] font-normal">(필수)</div>
+				<div class="pl-1 text-sm text-[#6F6963] font-bold">서비스 이용 약관 동의</div>
+				<div class="pl-1"><img src="/img/icon_ARROWRIGHT_dark.png"></div>				
+			</div>
+			<div class="flex pb-4 flex items-center">
+				<div class="">
+					<input type="checkbox" id="agree3" class="chk-hidden agree-item">
+					<label for="agree3" class="chk-img"></label>
+				</div>
+				<div class="pl-4 text-sm text-[#6F6963] font-normal">(필수)</div>
+				<div class="pl-1 text-sm text-[#6F6963] font-bold">개인정보 수집 및 이용 동의</div>
+				<div class="pl-1"><img src="/img/icon_ARROWRIGHT_dark.png"></div>				
+			</div>
+			<div class="flex pb-4 flex items-center">
+				<div class="">
+					<input type="checkbox" id="agree4" class="chk-hidden agree-item">
+					<label for="agree4" class="chk-img"></label>
+				</div>
+				<div class="pl-4 text-sm text-[#6F6963] font-normal">(선택)</div>
+				<div class="pl-1 text-sm text-[#6F6963] font-bold">마케팅 목적의 개인정보 수집 및 이용 동의</div>
+				<div class="pl-1"><img src="/img/icon_ARROWRIGHT_dark.png"></div>								
+			</div>
+			<div class="flex pb-4 flex items-center">
+				<div class="">
+					<input type="checkbox" id="agree5" class="chk-hidden agree-item">
+					<label for="agree5" class="chk-img"></label>
+				</div>
+				<div class="pl-4 text-sm text-[#6F6963] font-normal">(선택)</div>
+				<div class="pl-1 text-sm text-[#6F6963] font-bold">광고성 정보 수신 동의</div>
+				<div class="pl-1"><img src="/img/icon_ARROWRIGHT_dark.png"></div>							
+			</div>
+		</div>
+		
+	</div>
+</div>
+<div class="fixed px-6" style="bottom:44px;left:0;right:0;">
+	<button type="button" onclick="location.href='/member/?act=joinstep2'" id="f_next" class="w-full block h-[46px] text-sm text-[#FFFFFF] font-bold disabled:opacity-15 bg-[#322A24]"  disabled>동의하고 가입하기</button>
+</div>
+</body>
+</html>

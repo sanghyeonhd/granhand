@@ -1,0 +1,66 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:28 /home/grandhand/BUILDS/tpls/basicw/cont/eventv.htm 000004326 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script>
+function showlay()	{
+	if($("#sharelay").hasClass("hidden"))	{
+		$("#sharelay").removeClass("hidden");
+	}	else	{
+		$("#sharelay").addClass("hidden");
+	}
+}
+function copyToClipboard() {
+    const input = document.getElementById("shareurl");
+    input.select();                   // 텍스트 선택
+    input.setSelectionRange(0, 99999); // 모바일 호환을 위한 범위 지정
+
+    document.execCommand("copy");     // 복사 실행
+
+    alert("복사되었습니다");
+}
+</script>
+<?php $this->print_("top",$TPL_SCP,1);?>
+
+<div>
+<?php $this->print_("nav",$TPL_SCP,1);?>
+
+	<section class="container mx-auto pt-8">
+		<nav class="w-full flex items-center justify-between border-t pt-4">
+			<div class="flex items-center gap-4 h-10">
+				<h2 class="text-lg font-medium text-[#6F6963] m-0 p-0 leading-none">EVENT</h2>
+			</div>
+		</nav>
+		<main class="mt-10">
+			<div class="mx-auto">
+				<img alt="<?php echo $TPL_VAR["datas"]["subject"]?>" loading="lazy" width="1120" height="627" decoding="async" data-nimg="1" class="w-[1120px] h-[627px] mb-8" src="<?php echo $TPL_VAR["global"]["imgdomain"]?>/event/<?php echo $TPL_VAR["datas"]["img"]?>" style="color: transparent;">
+				<div>
+					<div class="flex flex-col md:flex-row md:items-center md:justify-between">
+						<h1 class="text-2xl text-black font-medium mb-4"><?php echo $TPL_VAR["datas"]["subject"]?></h1>
+						<div class="flex flex-wrap gap-4 mt-4 md:mt-0">
+							<div class="relative">
+								<a href="#none" onclick="event.preventDefault(); showlay();"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 lucide-share-2 text-[#5E5955] w-[18px] h-[19px] !p-0" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-«r2h»" data-state="closed"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></a>
+								<div id="sharelay" class="px-6 py-6 absolute hidden" style="border-radius: 1px;background:#FDFBF5;box-shadow: 0px 0px 10px 0px rgba(50, 42, 36, 0.10);right:0px;top:35px;">
+									<div class="text-[#6F6963] text-base font-bold pb-6">
+										공유하기
+									</div>
+									<div class="flex items-center py-3 px-4" style="border:1px solid #C0BCB6;">
+										<input type='text' id="shareurl" class="text-[#C0BCB6] text-sm font-normal" style="width:320px" value="http://www.granhand.kro.kr/cont/?act=eventv&idx=<?php echo $_REQUEST["idx"]?>">
+										<button type="button" onclick="copyToClipboard()" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 ml-4 p-1 text-[#5E5955] hover:text-black transition" aria-label="클립보드에 복사" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-8 h-8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex items-center text-sm font-medium text-[#C0BCB6] mb-8">
+						<span><?php echo substr($TPL_VAR["datas"]["wdate"], 0, 10)?></span>
+					</div>
+					<div class="w-[736px] mb-28 text-sm space-y-6 leading-[24px] text-[#322A24] tracking-[-1%]">
+						<?php echo $TPL_VAR["datas"]["memo"]?>
+
+					</div>
+				</div>
+			</div>
+		</main>
+	</section>
+</div>
+<?php $this->print_("down",$TPL_SCP,1);?>

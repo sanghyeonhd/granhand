@@ -1,0 +1,110 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:29 /home/grandhand/BUILDS/tpls/basicw/mypage/gradeinfo.htm 000008581 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<?php $this->print_("top",$TPL_SCP,1);?>
+
+<div class="container mx-auto pt-8">
+	<div class="w-full py-10 mx-auto">
+		<div class="flex gap-4 items-center">
+			<a href="#none" onclick="event.preventDefault(); history.back();">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+			</a>
+			<h2 class="text-lg font-medium text-[#6F6963]">등급 안내</h2>
+		</div>
+	</div>
+	<main class="w-full max-w-3xl mx-auto px-4 space-y-16 text-gray-800">
+		<section>	
+			<h2 class="text-base font-bold mb-4 text-[#6F6963]">나의 멤버십 등급</h2>
+			<div class="w-[739px] h-[166px] rounded-lg py-4 flex flex-col items-center shadow-sm">
+				<div class="pt-1">
+					<div class="w-[60px] h-[60px] rounded-full text-sm flex items-center justify-center text-white text-[33.71px] font-bold" style="background-color: rgb(233, 230, 224);">B</div>
+				</div>
+				<div class="mt-4 text-center font-medium">
+					<p class="font-bold text-[#322A24] text-sm"><?php echo $TPL_VAR["gmem"]["name"]?> 님</p>
+					<p class="text-sm text-[#C0BCB6] mt-2">현재 등급은 <span class="text-[#322A24]">Basic</span>입니다.</p>
+				</div>
+			</div>
+		</section>
+		<section class="w-full">
+			<h2 class="text-sm font-bold mb-6 text-[#6F6963]">등급 혜택 안내</h2>
+			<ul class="flex flex-col items-center mx-auto divide-y divide-dashed divide-gray-300 border-t border-b border-dashed border-gray-300 w-full">
+				<li class="flex gap-4 w-full items-center justify-center py-6 h-[133px]">
+					<div class="pt-1 mr-6">
+						<div class="w-[24px] h-[24px] rounded-full text-xs flex items-center justify-center font-bold text-white" style="background-color: rgb(233, 230, 224);">B</div>
+					</div>
+					<div class="space-y-2 w-[full]">
+						<div class="flex items-center gap-2">
+							<h3 class="font-bold text-sm text-[#322A24]">Basic</h3>
+							<span class="w-[63px] h-[16px] text-[8px] text-center py-[0.7] bg-[#E9E6E0] rounded-full text-[#6F6963]">포인트 적립 1%</span>
+						</div>
+						<div class="text-sm">
+							<div class="flex gap-1">
+								<span class="text-[#C0BCB6] text-[10px] font-bold w-10">기준</span>
+								<span class="text-[#322A24] text-[10px]">최근 6개월 구매금액 10만 원 미만 및 미구매</span>
+							</div>
+							<div class="flex mt-1 gap-1">
+								<span class="text-[#C0BCB6] text-[10px] font-bold w-10">혜택</span>
+								<div class="space-y-0.5 text-[10px] text-[#322A24]">
+									<div>신규 가입 10,000원 쿠폰 (가입 후 30일간 유효)</div><div>콤포타블 음료 교환권 1장 (유효기간 해당 월 1일 ~ 말일)</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="flex gap-4 w-full items-center justify-center py-6 h-[133px]">
+					<div class="pt-1 mr-6">
+						<div class="w-[24px] h-[24px] rounded-full text-xs flex items-center justify-center font-bold text-white" style="background-color: rgb(249, 227, 190);">B</div>
+					</div>
+					<div class="space-y-2 w-[full]">
+						<div class="flex items-center gap-2">
+							<h3 class="font-bold text-sm text-[#322A24]">Bronze</h3>
+							<span class="w-[63px] h-[16px] text-[8px] text-center py-[0.7] bg-[#E9E6E0] rounded-full text-[#6F6963]">포인트 적립 2%</span>
+						</div>
+						<div class="text-sm">
+							<div class="flex gap-1">
+								<span class="text-[#C0BCB6] text-[10px] font-bold w-10">기준</span>
+								<span class="text-[#322A24] text-[10px]">최근 6개월 구매금액 10만 원 이상, 20만 원 미만</span>
+							</div>
+							<div class="flex mt-1 gap-1">
+								<span class="text-[#C0BCB6] text-[10px] font-bold w-10">혜택</span>
+								<div class="space-y-0.5 text-[10px] text-[#322A24]">
+									<div>적립 5,000원 쿠폰 제공 1장</div>
+									<div>[APP 전용] 당월 10,000원 쿠폰 (균일가 제외)</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="flex gap-4 w-full items-center justify-center py-6 h-[133px]">
+					<div class="pt-1 mr-6"><div class="w-[24px] h-[24px] rounded-full text-xs flex items-center justify-center font-bold text-white" style="background-color: rgb(249, 183, 141);">S</div></div><div class="space-y-2 w-[full]"><div class="flex items-center gap-2"><h3 class="font-bold text-sm text-[#322A24]">Silver</h3><span class="w-[63px] h-[16px] text-[8px] text-center py-[0.7] bg-[#E9E6E0] rounded-full text-[#6F6963]">포인트 적립 3%</span></div><div class="text-sm"><div class="flex gap-1"><span class="text-[#C0BCB6] text-[10px] font-bold w-10">기준</span><span class="text-[#322A24] text-[10px]">최근 6개월 구매금액 20만 원 이상, 50만 원 미만</span></div><div class="flex mt-1 gap-1"><span class="text-[#C0BCB6] text-[10px] font-bold w-10">혜택</span><div class="space-y-0.5 text-[10px] text-[#322A24]"><div>적립 10,000원 쿠폰 제공 1장</div><div>[APP 전용] 당월 10,000원 쿠폰 (균일가 제외)</div></div></div></div></div>
+				</li>
+				<li class="flex gap-4 w-full items-center justify-center py-6 h-[133px]">
+					<div class="pt-1 mr-6"><div class="w-[24px] h-[24px] rounded-full text-xs flex items-center justify-center font-bold text-white" style="background-color: rgb(208, 80, 93);">G</div></div><div class="space-y-2 w-[full]"><div class="flex items-center gap-2"><h3 class="font-bold text-sm text-[#322A24]">Gold</h3><span class="w-[63px] h-[16px] text-[8px] text-center py-[0.7] bg-[#E9E6E0] rounded-full text-[#6F6963]">포인트 적립 4%</span></div><div class="text-sm"><div class="flex gap-1"><span class="text-[#C0BCB6] text-[10px] font-bold w-10">기준</span><span class="text-[#322A24] text-[10px]">최근 6개월 구매금액 50만 원 이상, 100만 원 미만</span></div><div class="flex mt-1 gap-1"><span class="text-[#C0BCB6] text-[10px] font-bold w-10">혜택</span><div class="space-y-0.5 text-[10px] text-[#322A24]"><div>적립 15,000원 쿠폰 제공 1장</div><div>[APP 전용] 당월 10,000원 쿠폰 (균일가 제외)</div></div></div></div></div>
+				</li>
+				<li class="flex gap-4 w-full items-center justify-center py-6 h-[133px]">
+					<div class="pt-1 mr-6"><div class="w-[24px] h-[24px] rounded-full text-xs flex items-center justify-center font-bold text-white" style="background-color: rgb(29, 23, 23);">V</div></div><div class="space-y-2 w-[full]"><div class="flex items-center gap-2"><h3 class="font-bold text-sm text-[#322A24]">VIP</h3><span class="w-[63px] h-[16px] text-[8px] text-center py-[0.7] bg-[#E9E6E0] rounded-full text-[#6F6963]">포인트 적립 5%</span></div><div class="text-sm"><div class="flex gap-1"><span class="text-[#C0BCB6] text-[10px] font-bold w-10">기준</span><span class="text-[#322A24] text-[10px]">최근 6개월 구매금액 100만 원 이상</span></div><div class="flex mt-1 gap-1"><span class="text-[#C0BCB6] text-[10px] font-bold w-10">혜택</span><div class="space-y-0.5 text-[10px] text-[#322A24]"><div>적립 20,000원 쿠폰 제공 1장</div><div>[APP 전용] 당월 10,000원 쿠폰 (균일가 제외)</div></div></div></div></div>
+				</li>
+			</ul>
+		</section>
+		<section class="space-y-10">
+			<div>
+				<h2 class="text-sm font-bold mb-6 text-[#322A24]">회원 등급 기준 안내</h2>
+				<ul class="list-disc pl-5 space-y-1 text-[10px] text-[#6F6963]">
+					<li>매월 첫째 주 회원 등급이 갱신됩니다.</li>
+					<li>회원 등급은 최근 6개월 동안의 결제 완료 금액을 기준으로 산정됩니다.</li>
+					<li>쿠폰은 지급일로부터 한 달간 사용 가능합니다.</li>
+					<li>일부 상품은 혜택 제공 대상에서 제외될 수 있습니다.</li>
+				</ul>
+			</div>
+			<div>
+				<h2 class="text-sm font-bold mb-6 text-[#322A24]">회원 등급 혜택 안내</h2>
+				<ul class="list-disc pl-5 space-y-1 text-[10px] text-[#6F6963]">
+					<li>각 등급별 쿠폰은 매월 1일 자동 발급됩니다.</li>
+					<li>일부 쿠폰은 앱에서만 사용 가능합니다.</li>
+					<li>회원 탈퇴 시 모든 혜택은 소멸되며 복원되지 않습니다.</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+</div>
+<?php $this->print_("down",$TPL_SCP,1);?>

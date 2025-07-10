@@ -1,0 +1,114 @@
+{#header}
+<link  rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+$(document).ready(function()	{
+	const swiper1 = new Swiper('.swiper1', {
+		loop: true,
+		pagination: {
+			el: '.swiper-pagination',
+			type: 'fraction', // <-- 이게 핵심
+		},
+	});
+	
+	const swiper2 = new Swiper('.swiper2', {
+		loop: true,
+	});
+});
+</script>
+<style>
+.swiper-pagination-fraction	{
+	width:auto !important;
+	background-color:#1111111A;
+	padding:5px 12px;
+	border-radius:20px;
+	color:#FFFFFF;
+	font-size:10px;
+	font-weight:bold;
+	right:30px !important;
+	bottom:30px  !important;
+	left:auto !important;
+}
+
+</style>
+</head>
+<body>
+<div id="root" style="background-color:#FDFBF5">
+	<div class="swiper swiper1">
+		<div class="swiper-wrapper">
+			{@ get_set_data(4) }
+			<div class="swiper-slide">
+				<div style="position:relative;">
+					<img src="{.imgurl}" style="width:100%;">
+					<div class="absolute bottom-12 left-6 text-white">
+						<h1 class="text-4xl font-bold mb-8">2025<br >Calender</h1>
+						<p class="text-base">1월 뉴스레터에서 신청하세요</p>
+					</div>
+				</div>
+			</div>	
+			{/}
+		</div>
+		 <div class="swiper-pagination"></div>
+	</div>
+	<nav class="flex justify-between px-6 py-4 border-b border-gray-200">
+		<a class="text-sm font-bold text-[#6F6963]" href="/cont/?act=journal">JOURNAL</a>
+		<a class="text-sm font-bold text-[#6F6963]" href="/cont/?act=event">EVENT</a>
+		<a class="text-sm font-bold text-[#6F6963]" href="/cont/?act=awards">AWARDS</a>
+		<a class="text-sm font-bold text-[#6F6963]" href="/cont/?act=store">STORES</a>
+	</nav> 
+	<section class="px-6 py-8">
+		<h2 class="text-sm font-bold mb-6 text-[#6F6963]">브랜드 숍</h2>
+		<div class="flex items-center justify-between">
+			<a class="flex-1 flex items-end justify-center" href="/shop/?act=list&cate=01">
+				<img src="/img/m/main1.png" alt="GRANHAND." class="h-3 w-auto">
+			</a>
+			<div class="shrink-0 w-[1px] h-6 bg-gray-300"></div>
+			<a class="flex-1 flex items-center justify-center" href="/shop/?act=list&cate=02">
+				<img src="/img/m/main2.png" alt="heiion" class="h-6 w-auto">
+			</a>
+			<div class="shrink-0 w-[1px] h-6 bg-gray-300"></div>
+			<a class="flex-1 flex items-center justify-center" href="/shop/?act=list&cate=03">
+				<img src="/img/m/main3.png" alt="Komfortabel coffee" class="h-6 w-auto">
+			</a>
+		</div>
+		<div class="mt-8">
+			<div class="relative w-full" >
+				<div class="overflow-hidden">
+					<div class="swiper swiper2">
+						<div class="swiper-wrapper">
+							{@ get_set_data(5) }
+							<div class="swiper-slide min-w-0 shrink-0 grow-0 basis-full" >
+								<div class="relative ">
+									<img src="{.imgurl}" alt="ROLAND. GRANHAND." class="w-full h-full object-cover">
+									<div class="absolute top-3 left-4 text-white">	
+										<h2 class="text-sm font-medium leading-tight">{.text}<br />{.text2}</h2>
+									</div>
+								
+								</div>
+							</div>
+							{/}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="px-6 py-8">
+		<h2  class="text-sm font-bold mb-6 text-[#6F6963]">저널</h2>
+		<div class="space-y-6">
+			{@ get_journal(0,6) }
+			<a class="block" href="/cont/?act=journalv&idx={.idx}">
+				<div class="relative mb-4">
+					<img src="{global.imgdomain}/journal/{.img}" alt="NOLL Store" class="w-full h-full object-cover rounded-sm">
+					<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white">
+						<span class="text-xs cursor-pointer hover:underline">#{.catename}</span>
+						<h3 class="text-base font-medium mt-1">{.subject}</h3>
+						<p class="text-xs mt-1 text-gray-200">{=substr(.wdate,0,10)} 조회 {.readcount}</p>
+					</div>
+				</div>
+			</a>
+			{/}
+		</div>
+	</section>
+</div>
+{#down}

@@ -1,0 +1,23 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:28 /home/grandhand/BUILDS/tpls/basicm/mypage/challenge.htm 000001028 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center">
+			<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+			<div class="text-lg font-bold">챌린지</div>
+		</div>
+		<div class="pt-4 px-4">
+			<div class="flex pt-4 items-center">
+				<A href="#none" class="text-[#6F6963] font-bold text-sm">전체</a>
+				<span class="mx-2" style="width:1px;background-color:#C0BCB6;height:10px;"></span>
+				<A href="#none" class="text-[#C0BCB6] font-bold text-sm">미보유</a>
+				<span class="mx-2" style="width:1px;background-color:#C0BCB6;height:10px;"></span>
+				<A href="#none" class="text-[#C0BCB6] font-bold text-sm">보유</a>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $this->print_("down",$TPL_SCP,1);?>

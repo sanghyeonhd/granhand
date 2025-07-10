@@ -1,0 +1,68 @@
+{#header}
+<script>
+$(document).ready(function () {
+	
+	
+	
+	const $id     = $('#f_co');
+	const $submit = $('#f_next');
+	const $idMsg   = $('#f_idmsg');
+	
+	function validate() {
+		const idVal  = $id.val().trim();
+		
+		/* --- 아이디 검증 --- */
+		let idOk = false;
+		if (idVal === '') {
+			$idMsg.text('쿠폰번호를 입력하세요.').removeClass('hidden');
+			$id.addClass('bg-[#FF3E24]');
+		} else {
+			idOk = true;
+			$idMsg.addClass('hidden');
+			$id.removeClass('bg-[#FF3E24]');
+		}
+
+		
+		$submit.prop('disabled', !idOk);
+	}
+
+	// 포커스가 빠져나올 때 검사
+	$id.on('blur', validate);
+
+	
+	
+});
+function set_next()	{
+	alert('등록할수 없는 쿠폰입니다');	
+}
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center">
+			<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+			<div class="text-lg font-bold">나의 쿠폰함</div>
+		</div>
+		<div class="pt-4 px-6">
+			<div class="flex pb-8">
+				<a href="/mypage/?act=mycoupon" class="text-sm font-bold text-[#C0BCB6]">보유쿠폰(0)</a>
+				<a href="/mypage/?act=mycouponregi" class="pl-4 text-sm font-bold text-[#322A24]">쿠폰 등록</a>				
+			</div>
+			<div class="">
+				<div class="text-sm text-[#322A24] font-medium pb-2">쿠폰번호</div>
+				<div class="mb-4">
+					<div class="h-[46px] border-[#C0BCB6] border mb-1">
+						<input type="text" id="f_co" placeholder="쿠폰번호를 입력해 주세요." class="block px-4 bg-[#FDFBF4] w-full h-[44px] font-medium"/>
+					</div>
+					<div class="hidden text-[#FF3E24] text-[10px]" id="f_idmsg"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="fixed px-6" style="bottom:44px;left:0;right:0;">
+	<button id="f_next" type="button" onclick="set_next();" id="f_next" class="w-full block h-[46px] text-sm text-[#FFFFFF] font-bold disabled:opacity-15 bg-[#322A24]"  disabled>쿠폰 등록</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{#header}
+<script src="https://scert.mobile-ok.com/resources/js/index.js"></script>
+<script>
+    //모바일/PC 스크립트 인식 구분
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("#mok_popup").addEventListener("click", function () {
+		const protocol = window.location.protocol.replace(':', ''); // 'http' 또는 'https'
+		const domain = window.location.hostname;
+
+        MOBILEOK.process(protocol+"://"+domain+"/dream/mok_std_request.php?pre_idx={_REQUEST.pre_idx}", "WB", "result");
+    })
+    // document.querySelector("#mok_move").addEventListener("click", function () {
+        // 모바일 전용서비스로 페이지 이동처리 또는 카카오 브라우져 등 새창으로 처리가 어려운, 환경 또는 브라우져에서 처리
+        //MOBILEOK.process("https://이용기관URL/mok/mok_std_request.jsp", "WB", "");
+    // })
+    })
+
+    function result(result) {
+		try {
+			console.log(result);
+			result = JSON.parse(result);
+			console.log(result);
+			
+			if(result.resultCode=='2000')	{
+				location.replace('/member/?act=joinstep4');	
+			}
+		} catch (error) {
+			console.log(error);
+		}
+    }
+</script>
+{#top}
+<div class="container mx-auto px-6 pt-8 ">
+	<h2 class="text-lg text-[#6F6963] font-medium text-left mb-4 border-b border-b-[#6f6963] pb-4 leading-[26px]">회원가입</h2>
+	<div class="flex items-center mb-8">
+		<button type="button" onclick="history.back();" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-4 h-4">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left w-4 h-4 text-[#6F6963] mr-3" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+		</button>
+		<div class="text-sm font-medium items-center text-[#6F6963] leading-[22px]">이전 단계</div>
+	</div>
+	<div class="w-full max-w-2xl flex flex-col items-center mx-auto">
+		<div class="w-[358px] mt-8">
+			<div class="w-full mb-10 relative h-1 bg-[#ECE9E2] rounded overflow-hidden">
+				<div class="absolute h-1 bg-[#7B736A] rounded" style="left: 67%; width: 33%; top: 0px;"></div>
+			</div>
+			<div class="mb-8">
+				<h1 class="text-lg font-bold text-[#322A24] mb-2">본인인증을 진행해 주세요.</h1>
+				<div class="mb-50 text-sm font-medium text-[#6F6963]">안전한 이용을 위해 최초 한 번 본인인증을 진행해요.</div>
+				<button type="button" id="mok_popup" class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 w-full h-[46px] py-5 bg-[#322A24] text-[#FDFBF5] text-sm font-bold rounded cursor-pointer">본인 인증</button>
+			</div>
+		</div>
+	</div>
+</div>
+{#down}

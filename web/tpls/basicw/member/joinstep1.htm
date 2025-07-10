@@ -1,0 +1,126 @@
+{#header}
+<Script>
+$(document).ready(function () {
+	const $agreeAll  = $('#agreeall');
+	const $agreeEach = $('.agree-item');
+	const $fNext     = $('#f_next');
+
+	// 1. "전체 동의" 체크 → 모든 항목 체크/해제
+	$agreeAll.on('change', function () {
+		const checked = $(this).is(':checked');
+		$agreeEach.prop('checked', checked);
+		updateNextButton(); // 버튼 상태도 반영
+	});
+
+	// 2. 개별 항목 중 하나라도 변경되면 전체동의 상태 업데이트 + 버튼 상태도 반영
+	$agreeEach.on('change', function () {
+		const allChecked = $agreeEach.length === $agreeEach.filter(':checked').length;
+		$agreeAll.prop('checked', allChecked);
+		updateNextButton();
+	});
+
+	// 3. 버튼 활성화 조건 검사
+	function updateNextButton() {
+		const allRequiredChecked =
+			$('#agree1').is(':checked') &&
+			$('#agree2').is(':checked') &&
+			$('#agree3').is(':checked') &&
+			$('#agree4').is(':checked');
+		console.log(allRequiredChecked);
+		$fNext.prop('disabled', !allRequiredChecked);
+	}
+});
+</script>
+{#top}
+<div class="w-[740px] container mx-auto px-6 pt-8 ">
+	<h2 class="text-lg text-[#6F6963] font-medium text-left mb-4 border-b border-b-[#6f6963] pb-4 leading-[26px]">회원가입</h2>
+	<div class="flex items-center mb-8">
+		<button type="button" onclick="history.back();" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-4 h-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left w-4 h-4 text-[#6F6963] mr-3" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+		<div class="text-sm font-medium items-center text-[#6F6963] leading-[22px]">이전 단계</div>
+	</div>
+	<div class="w-full max-w-2xl flex flex-col items-center mx-auto">
+		<h1 class="text-2xl font-bold text-center mb-2 leading-[42px] text-[#6F6963]">그랑핸드 회원 가입하기</h1>
+		<p class="text-center text-[#6F6963] font-medium mb-8 leading-[24px]">그랑핸드 서비스 이용 약관에 동의해 주세요.</p>
+		<div class="w-[740px] h-[494px] bg-[#322A2408] rounded-xl p-8 mb-6">
+			<div class="mb-6">
+				<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-start gap-2 cursor-pointer">
+					<div class="">
+						<input type="checkbox" id="agree1" class="chk-hidden agree-item">
+						<label for="agree1" class="chk-img"></label>
+					</div>
+					<div class="flex items-center gap-2 text-[#6F6963]">
+						<span class="text-xs leading-[20px]">(필수)</span> 
+						<span class="text-sm font-bold leading-[22px]">서비스 이용 약관 동의</span>
+					</div>
+				</label>
+				<div class="w-[670px] h-[86px] bg-white text-[10px] text-[#6F6963] rounded p-4 mt-4 overflow-y-auto border border-[#E9E6E0] leading-[18px]"></div>
+			</div>
+			<div class="mb-6">
+				<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-start gap-2 cursor-pointer">
+					<div class="">
+						<input type="checkbox" id="agree2" class="chk-hidden agree-item">
+						<label for="agree2" class="chk-img"></label>
+					</div>
+					<div class="flex items-center gap-2 text-[#6F6963]">
+						<span class="text-xs leading-[20px]">(필수)</span> 
+						<span class="text-sm font-bold leading-[22px]">개인정보 수집 및 이용 동의</span>
+					</div>
+				</label>
+				<div class="w-[670px] h-[86px] bg-white text-[10px] text-[#6F6963] rounded p-4 mt-4 overflow-y-auto border border-[#E9E6E0] leading-[18px]"></div>
+			</div>
+			<div class="mb-6">
+				<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-start gap-2 cursor-pointer">
+					<div class="">
+						<input type="checkbox" id="agree3" class="chk-hidden agree-item">
+						<label for="agree3" class="chk-img"></label>
+					</div>
+					<div class="flex items-center gap-2 text-[#6F6963]">
+						<span class="text-xs leading-[20px]">(선택)</span> 
+						<span class="text-sm font-bold leading-[22px]">개인정보 수집 및 이용 및 이벤트/마케팅 수신 동의</span>
+					</div>
+				</label>
+				<div class="w-[670px] h-[86px] bg-white text-[10px] text-[#6F6963] rounded p-4 mt-4 overflow-y-auto border border-[#E9E6E0] leading-[18px]"></div>
+			</div>
+		</div>
+		<div class="mx-auto">
+			<div class="pl-8">
+				<div class="mb-4">
+					<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2 cursor-pointer">
+						<div class="">
+							<input type="checkbox" id="agree4" class="chk-hidden agree-item">
+							<label for="agree4" class="chk-img"></label>
+						</div>
+						<div class="flex items-center gap-2 text-[#6F6963]">
+							<span class="text-xs leading-[20px]">(필수)</span> 
+							<span class="font-bold text-sm leading-[22px]">만 14세 이상입니다.</span>
+						</div>
+					</label>
+				</div>
+				<div class="mb-4">
+					<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2 cursor-pointer">
+						<div class="">
+							<input type="checkbox" id="agree5" class="chk-hidden agree-item">
+							<label for="agree5" class="chk-img"></label>
+						</div>
+						<div class="flex items-center gap-2 text-[#6F6963]">
+							<span class="text-xs leading-[20px]">(선택)</span> 
+							<span class="font-bold text-sm leading-[22px]">광고성 정보 수신 동의</span>
+						</div>
+					</label>
+				</div>
+			</div>
+			<div class="border-t border-dashed my-6"></div>
+			<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2 cursor-pointer mb-5 pl-8">
+				<div class="">
+					<input type="checkbox" id="agreeall" class="chk-hidden agree-item">
+					<label for="agreeall" class="chk-img"></label>
+				</div>
+				<div>
+					<span class="font-bold text-base text-[#6F6963] leading-[24px]">GRANHAND의 이용약관 및 개인정보 처리방침을 확인하였고, 이에 모두 동의합니다.</span>
+				</div>
+			</label>
+			<button id="f_next" type="button" onclick="location.href='/member/?act=joinstep2'" class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 px-4 w-[739px] h-[46px] py-3 bg-[#FDFBF5] border !border-[#C0BCB6] rounded text-[#322A24] font-bold transition disabled:cursor-not-allowed hover:bg-[#f5f3ef] text-sm leading-[22px] cursor-not-allowed" disabled>동의하고 가입하기</button>
+		</div>
+	</div>
+</div>
+{#down}

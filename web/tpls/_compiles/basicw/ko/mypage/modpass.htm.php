@@ -1,0 +1,36 @@
+<?php /* Template_ 2.2.7 2025/07/10 09:49:18 /home/grandhand/BUILDS/tpls/basicw/mypage/modpass.htm 000004065 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<?php $this->print_("top",$TPL_SCP,1);?>
+
+<div class="container mx-auto pt-8">
+	<div class="flex items-center mb-8">
+		<button onclick="history.back(); " class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-4 h-4">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left text-[#6F6963] mr-2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+		</button>
+		<div class="text-sm font-medium items-center text-[#6F6963] leading-[22px]">이전으로</div>
+	</div>
+	<div class=" flex flex-col items-center py-8 w-[358px] mx-auto">
+		<section class="w-full max-w-xl">
+			<h2 class="text-sm font-bold text-[#322A24] mb-16 leading-[22px]">비밀번호 변경</h2>
+			<div class="space-y-6">
+				<div>
+					<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm text-[#322A24] font-medium mb-2 leading-[22px]"	for="cur_pw">현재 비밀번호</label>
+					<input class="flex bg-background px-[16px] py-[12px] text-base text-[#322A24] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full h-[46px] border !border-[#C0BCB6] rounded !text-sm placeholder:text-[#C0BCB6] undefined" id="cur_pw" placeholder="현재 비밀번호를 입력해 주세요." type="password" name="curPw">
+				</div>
+			
+				<div>
+					<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm text-[#322A24] font-medium mb-2 leading-[22px]" for="new_pw">신규 비밀번호</label>
+					<input class="flex bg-background px-[16px] py-[12px] text-base text-[#322A24] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full h-[46px] border !border-[#C0BCB6] rounded !text-sm placeholder:text-[#C0BCB6] undefined" id="new_pw" placeholder="새 비밀번호를 입력해 주세요." type="password" name="pw">
+				</div>
+				<div>
+					<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm text-[#322A24] font-medium mb-2 leading-[22px]" for="new_pw_confirm">신규 비밀번호 확인</label>
+					<input class="flex bg-background px-[16px] py-[12px] text-base text-[#322A24] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full h-[46px] border !border-[#C0BCB6] rounded !text-sm placeholder:text-[#C0BCB6] undefined" id="new_pw_confirm" placeholder="새 비밀번호를 확인해 주세요." type="password" name="confirmPw">
+				</div>
+			</div>
+			<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 w-full mt-10 py-[12px] px-[24px] h-[46px] text-sm font-bold bg-[#322A24] text-[#FDFBF5] hover:bg-[#48413A] disabled:bg-[#DBD7D0]" disabled="">확인</button>
+			
+		</section>
+	</div>
+</div>
+<?php $this->print_("down",$TPL_SCP,1);?>

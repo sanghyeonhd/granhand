@@ -1,0 +1,23 @@
+{#header}
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="fixed top-0 left-0 right-0 z-20 bg-[#FDFBF4]">
+			<div class="h-[58px] flex px-6 items-center ">
+				<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+				<div class="text-lg font-bold">자주 묻는 질문</div>
+			</div>
+		</div>
+		<div class="h-[54px] px-6" style="padding-top:58px;">
+			<div class="flex items-center">
+				{@ catelist }
+				<a href="/cont/?act=faq&cate_idx={.idx}" class=" {? .issel=='Y' }text-[#322A24]{:}text-[#322A244D]{/} text-sm font-medium pr-4">{.catename}</a>
+				{/}
+			</div>
+		</div>
+		
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{#header}
+
+{#top}
+<div>
+	{#nav}
+	<section class="container mx-auto pt-8">
+		<nav class="w-full flex flex-col pt-4">
+			<div class="w-full flex items-start justify-between">
+				<div class="flex items-center gap-4 h-10">
+					<h2 class="text-lg font-medium text-[#6F6963] m-0 p-0 leading-none">SHOP</h2>
+					<div class="flex items-center text-sm text-gray-400">
+						<div role="radiogroup" aria-required="false" dir="ltr" class="flex items-center rounded overflow-hidden gap-4" tabindex="0" style="outline: none;">
+							{@ get_cate('')}
+							<a href="/shop/?act=list&cate={.catecode}">
+								{? .index_ != 0}<span class="w-[1px] mr-4 text-[#C0BCB6] select-none">|</span>{/}
+								<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-bold transition-colors min-w-[5%] hover:text-[#6F6963] {? substr(_REQUEST.cate,0,2) == .catecode}text-[#6F6963]{:}text-[#C0BCB6]{/}">
+									{.catename}
+								</label>
+							</a>
+							{/}
+							
+						</div>
+					</div>
+				</div>
+				<div class="flex flex-col items-start">
+					<div class="flex items-center text-sm text-gray-400 h-10">
+						{? strlen(_REQUEST.cate) >= 2 }
+						<div role="radiogroup" aria-required="false" dir="ltr" class="flex items-center rounded overflow-hidden gap-[20px]" tabindex="0" style="outline: none;">
+							
+							<a href="/shop/?act=list&cate={=substr(_REQUEST.cate,0,2)}" class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-bold transition-colors min-w-5 hover:text-[#6F6963] {? substr(_REQUEST.cate,0,2) == _REQUEST.cate}text-[#6F6963]{:}text-[#C0BCB6]{/}">
+								전체
+							</a>
+							{@ get_cate(substr(_REQUEST.cate,0,2))}
+							<a href="/shop/?act=list&cate={.catecode}" class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-bold transition-colors min-w-5 hover:text-[#6F6963] {? substr(_REQUEST.cate,0,4) == .catecode}text-[#6F6963]{:}text-[#C0BCB6]{/}">
+								{.catename}
+							</a>
+							{/}
+							{? substr(_REQUEST.cate,0,2) == '01'}
+							<a href="/cont/?act=guide&cate=01" class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-bold transition-colors min-w-5 hover:text-[#6F6963] text-[#6F6963]">
+								가이드
+							</a>
+							{/}
+						</div>
+						{/}
+					</div>
+					<div class="flex items-center mt-2 text-sm" style="min-height: 40px; height: 40px; visibility: hidden;">
+						<div role="radiogroup" aria-required="false" dir="ltr" class="flex items-center rounded overflow-hidden gap-6" tabindex="-1" style="outline: none;">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="mx-auto"><header><h2 class="text-lg text-[#6F6963] font-medium mb-4 leading-[26px]">GUIDE</h2></header><main class="container mx-auto pt-8 text-[#6F6963] mb-20"><section class="text-center max-w-xl mx-auto mb-30"><h2 class="text-sm font-bold uppercase tracking-wide text-[#DBD7D0] mb-3">Your Choice</h2><h1 class="text-lg text-[#6F6963] font-bold mb-6">SUSIE SALMON. 수지살몬</h1><p class="text-xs text-center leading-relaxed mb-6">방금 시든 꽃다발의 포장을 뜯어낸 반 정도 물이 담긴 투명한 병에 꽂는다. 꽃 한 다발에서 뿜어지는 생기가 태배한 자태로 서서히 퍼져나간다. 방금자른 사과를 까내 한 입 베어 문 다음 잔디를 깔아둔 곳을 가까이 맡다. 얇게 겹친 살 내음 위로 올라오는 삼광슬라임 나는 느낌이 섞인다.</p><p class="text-xs text-[#C0BCB6] mb-8"><span class="font-bold">향조 노트</span><br>Top : Lemon, Black Currant, Tangerine, Cut Grass<br>Middle : Lily of the Valley, Jasmine, Rose, Freesia, Peach, Apricot, Apple<br>Base : Sandal Wood, Cedar, Amber, White Musk</p><p class="text-sm leading-relaxed font-medium">#은은한 #데일리 #뮤테드 머스크<br>연어 조합은 아니고 영화 '러블리 본즈'의 사라살몬은 주인공의 이름이어요. 여러 꽃과 잎이 섞인 청순한 꽃의 뷰케이서의 뉘앙스가 보이되 머스크가 오히려 그 향을 가장 사랑스럽고 안정감 있는 향이로. 몽환적 자연스러움에 어떤 결핍이 있을 때 이끌리기 때문에 살면서 내내 사용하게 되어야. 기분이 안맞아 수시 착향을 원하는 향보다는 익숙한 45도각 늘 향입니다. 여자 친구 선물용으로 가장 인기가 좋지만, 직접 사용하시는 목적으로 구매하시는 분들도 꽤나 많습니다. 선물 시도하기 조심스럽다면 같은 향의 핸드크림으로 시향해 보시면서 수치 살몬 랜드군들을 싫어하시는 분은… 없어요(단호)</p></section><section><h3 class="text-sm font-bold text-[#6F6963] mb-4">RECOMMENDED</h3>
+		<div style="display:none;" class="grid grid-cols-[205px_205px_205px_205px_205px] gap-x-[23.75px] gap-y-12"><a class="group cursor-pointer" href="/shop/undefined"><div class="overflow-hidden mb-4 relative"><img alt="Roland Multi Perfume" loading="lazy" width="205" height="200" decoding="async" data-nimg="1" class="!w-[205px] !h-[200px] object-cover transition-transform duration-700 group-hover:scale-105" srcset="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=256&amp;q=75 1x, /_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75 2x" src="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75" style="color: transparent;"></div><div class="space-y-2"><h3 class="text-sm text-[#322A24] font-bold group-hover:text-granhand-text transition-colors">Roland Multi Perfume</h3><div class="flex items-center space-x-2 text-xs text-[#C0BCB6]"><span>롤랑 멀티퍼퓸 100ml / 200ml</span></div><div class="flex items-center space-x-2 text-xs text-[#322A24]"><span>35,000 KRW</span></div></div></a><a class="group cursor-pointer" href="/shop/undefined"><div class="overflow-hidden mb-4 relative"><img alt="Roland Multi Perfume" loading="lazy" width="205" height="200" decoding="async" data-nimg="1" class="!w-[205px] !h-[200px] object-cover transition-transform duration-700 group-hover:scale-105" srcset="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=256&amp;q=75 1x, /_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75 2x" src="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75" style="color: transparent;"></div><div class="space-y-2"><h3 class="text-sm text-[#322A24] font-bold group-hover:text-granhand-text transition-colors">Roland Multi Perfume</h3><div class="flex items-center space-x-2 text-xs text-[#C0BCB6]"><span>롤랑 멀티퍼퓸 100ml / 200ml</span></div><div class="flex items-center space-x-2 text-xs text-[#322A24]"><span>35,000 KRW</span></div></div></a><a class="group cursor-pointer" href="/shop/undefined"><div class="overflow-hidden mb-4 relative"><img alt="Roland Multi Perfume" loading="lazy" width="205" height="200" decoding="async" data-nimg="1" class="!w-[205px] !h-[200px] object-cover transition-transform duration-700 group-hover:scale-105" srcset="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=256&amp;q=75 1x, /_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75 2x" src="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75" style="color: transparent;"></div><div class="space-y-2"><h3 class="text-sm text-[#322A24] font-bold group-hover:text-granhand-text transition-colors">Roland Multi Perfume</h3><div class="flex items-center space-x-2 text-xs text-[#C0BCB6]"><span>롤랑 멀티퍼퓸 100ml / 200ml</span></div><div class="flex items-center space-x-2 text-xs text-[#322A24]"><span>35,000 KRW</span></div></div></a><a class="group cursor-pointer" href="/shop/undefined"><div class="overflow-hidden mb-4 relative"><img alt="Roland Multi Perfume" loading="lazy" width="205" height="200" decoding="async" data-nimg="1" class="!w-[205px] !h-[200px] object-cover transition-transform duration-700 group-hover:scale-105" srcset="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=256&amp;q=75 1x, /_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75 2x" src="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75" style="color: transparent;"></div><div class="space-y-2"><h3 class="text-sm text-[#322A24] font-bold group-hover:text-granhand-text transition-colors">Roland Multi Perfume</h3><div class="flex items-center space-x-2 text-xs text-[#C0BCB6]"><span>롤랑 멀티퍼퓸 100ml / 200ml</span></div><div class="flex items-center space-x-2 text-xs text-[#322A24]"><span>35,000 KRW</span></div></div></a><a class="group cursor-pointer" href="/shop/undefined"><div class="overflow-hidden mb-4 relative"><img alt="Roland Multi Perfume" loading="lazy" width="205" height="200" decoding="async" data-nimg="1" class="!w-[205px] !h-[200px] object-cover transition-transform duration-700 group-hover:scale-105" srcset="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=256&amp;q=75 1x, /_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75 2x" src="/_next/image?url=%2Fsusie-salmon-multi-perfume.png&amp;w=640&amp;q=75" style="color: transparent;"></div><div class="space-y-2"><h3 class="text-sm text-[#322A24] font-bold group-hover:text-granhand-text transition-colors">Roland Multi Perfume</h3><div class="flex items-center space-x-2 text-xs text-[#C0BCB6]"><span>롤랑 멀티퍼퓸 100ml / 200ml</span></div><div class="flex items-center space-x-2 text-xs text-[#322A24]"><span>35,000 KRW</span></div></div></a></div></section></main></div>
+	</section>
+</div>
+{#down}

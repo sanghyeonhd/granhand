@@ -1,0 +1,84 @@
+{#header}
+{#top}
+<div>
+	{#nav}
+	<section class="container mx-auto pt-8">
+		<nav class="w-full flex items-center justify-between border-t pt-4">
+			<div class="flex items-center gap-4 h-10">
+				<h2 class="text-lg font-medium text-[#6F6963] m-0 p-0 leading-none">JOURNAL</h2>
+			</div>
+			<div class="flex items-center text-sm text-gray-400">
+				<div role="radiogroup" aria-required="false" dir="ltr" class="flex rounded overflow-hidden gap-10" tabindex="0" style="outline: none;">
+					<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-bold transition-colors min-w-[5%] hover:text-[#322A24] {? _REQUEST.cate == '' }text-[#322A24]{:}text-[#322A244D]{/}">
+						<button type="button" role="radio" aria-checked="true" data-state="checked" value="All" class="aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 hidden" tabindex="-1" onclick="location.href='/cont/?act=journal'">
+						</button>All
+					</label>
+					{@ catelist }
+					<label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-bold transition-colors min-w-[5%] hover:text-[#322A24] {? .idx == _REQUEST.cate }text-[#322A24]{:}text-[#322A244D]{/}">
+						<button type="button" role="radio" aria-checked="false" data-state="unchecked" value="News" class="aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 hidden" tabindex="-1" onclick="location.href='/cont/?act=journal&cate={.idx}'"></button>{.catename}
+					</label>
+					{/}
+				</div>
+			</div>
+		</nav>
+		<div>
+			<main class="container mx-auto mt-10">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
+					{@ get_journal(l_arr.npage - 1,l_arr.numper,l_arr.cate,l_arr.keyword) }
+					<a class="group cursor-pointer" href="/cont/?act=journalv&idx={.idx}">
+						<div class="aspect-[3/4] overflow-hidden relative rounded-lg"> 
+							<img alt="{.subject}" loading="lazy" width="400" height="800" decoding="async" data-nimg="1" class="!w-[357px] !h-[460px] object-cover transition-transform duration-700 group-hover:scale-105"  src="{global.imgdomain}/journal/{.img}" style="color: transparent;">
+							<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
+								
+							</div>
+							<div class="absolute bottom-2 left-0 p-4 pb-6 text-[#FDFBF5]"> 
+								<p class="text-xs font-bold mb-1">#{.catename}</p>
+								<h3 class="text-base font-bold mb-1 leading-tight">{.subject}</h3>
+								<p class="text-xs font-medium text-[#E9E6E0]">{=substr(.wdate,0,10)} 조회 {.readcount}</p>
+							</div>
+						</div>
+					</a>
+					{/}
+				</div>
+				<div class="mb-20"></div>
+				<div class="flex justify-center items-center gap-2 py-8 flex-wrap">
+					{? l_paging.block>1 }
+					<button style="display:none" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 text-base text-[#C0BCB6] hover:text-[#6F6963] disabled:text-gray-300 min-w-[3%]" onclick="location.href='{l_paging.superfirstl}'">≫</button>
+					{/}
+					{? l_paging.total_record!=0 } 
+					
+					{/}
+					{@ l_loop_paging}
+						{? l_loop_paging.page==l_paging.nowpage }
+						<button class="text-base font-bold text-[#6F6963] hover:text-black transition-colors min-w-[3%]" onclick="location.href='{l_loop_paging.links}'">{l_loop_paging.page}</button>
+						{:}
+						<button class="text-base font-bold text-[#6F6963] hover:text-black transition-colors min-w-[3%]" onclick="location.href='{l_loop_paging.links}'">{l_loop_paging.page}</button>
+						{/}
+					{/}
+					{? l_paging.total_record!=0 }
+					
+					{/}
+					{? l_paging.block < l_paging.totalblock } 
+					<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 py-2 text-base text-[#C0BCB6] hover:text-[#6F6963] disabled:text-gray-300 min-w-[3%]">≫</button>
+					{/}				
+				
+				
+					
+					
+				</div>
+				<div class="mb-14"></div>
+				<form action="/cont/?act=journal" method="post">
+					<div class="max-w-[740px] max-w-2/3 mx-auto px-4">
+						<div class="relative max-w-[740px]">
+							<input class="flex border w-full rounded-md bg-background px-[16px] ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm max-w-[740px] h-[35px] text-[#322A24] text-lg font-medium !border-0 !border-b-1 !border-[#5E5955] !rounded-none !focus:outline-none !focus:border-0 !focus:border-b-1 !focus:border-b-black placeholder-[#322A244D] py-2 pr-10" placeholder="검색어를 입력하세요." name="keyword" type="text" value="{_REQUEST.keyword}">
+							<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 absolute right-0 top-1/2 -translate-y-1/2" type="submit">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search w-[24px] h-[24px] text-[#5E5955]" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+							</button>
+						</div>
+					</div>
+				</form>
+			</main>
+		</div>
+	</section>
+</div>
+{#down}

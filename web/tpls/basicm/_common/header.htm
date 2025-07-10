@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="/assets/css/globalsm.css?v=2">
+<script src="/js/newscript.js"></script>
+<title>GRANHAND</title>
+<style>
+.chk-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  border: 0; clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* (2) 기본 라벨(언체크) — 원하는 해상도에 맞춰 width/height 지정 */
+.chk-img {
+
+  display: inline-block;
+  width: 20px;          /* 아이콘 크기 */
+  height: 20px;
+  background: url('/img/checkbox-unchecked.png') no-repeat center;
+  cursor: pointer;
+}
+
+/* (3) 체크된 상태일 때 이미지 교체 */
+.chk-hidden:checked + .chk-img {
+  background-image: url('/img/checkbox-checked.png');
+}
+
+/* (4) 키보드 포커스 표시(접근성) */
+.chk-hidden:focus + .chk-img {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+</style>
+<script>
+function qrshowops()	{
+	console.log($("#qrsbg").css("display"));
+	if($("#qrsbg").css("display") == "none")	{
+		$("#qrsbg").removeClass("hidden");	
+		
+		
+		$("body").addClass("overflow-hidden");
+	}	else	{
+		$("#qrsbg").addClass("hidden");	
+		$("#qrs1").removeClass("hidden");
+		$("#qrs2").addClass("hidden");
+		$("#qrs3").addClass("hidden");
+		
+		$("body").removeClass("overflow-hidden");		
+	}
+}
+function  qrscan()	{
+	
+	{? global.isapp == 'N'}
+	alert('모바일 앱에서 이용가능합니다');
+	{:}
+	const message = {
+      type: "showcamera"
+    };
+	window.ReactNativeWebView.postMessage(JSON.stringify(message));
+	{/}
+		
+}
+</script>

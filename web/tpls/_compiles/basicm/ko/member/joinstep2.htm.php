@@ -1,0 +1,136 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:27 /home/grandhand/BUILDS/tpls/basicm/member/joinstep2.htm 000004972 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script>
+$(document).ready(function () {
+	
+	const $id     = $('#f_id');
+	const $pwd    = $('#f_passwd');
+	const $repwd    = $('#f_repasswd');
+	const $submit = $('#f_next');
+	const $idMsg   = $('#f_idmsg');
+	const $pwdMsg  = $('#f_passwdmsg');
+	const $repwdMsg  = $('#f_repasswdmsg');
+
+	const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	const passReg  = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+
+	function validate() {
+		const idVal  = $id.val().trim();
+		const pwdVal = $pwd.val();
+		const repwdVal = $repwd.val();
+		
+		/* --- 아이디 검증 --- */
+		let idOk = false;
+		if (idVal === '') {
+			$idMsg.text('아이디를 입력하세요.').removeClass('hidden');
+			$id.addClass('bg-[#FF3E24]');
+		} else if (!emailReg.test(idVal)) {
+			$idMsg.text('이메일 형식이 올바르지 않습니다.').removeClass('hidden');
+			$id.addClass('bg-[#FF3E24]');
+		} else {
+			idOk = true;
+			$idMsg.addClass('hidden');
+			$id.removeClass('bg-[#FF3E24]');
+		}
+
+		/* --- 비밀번호 검증 --- */
+		let pwdOk = false;
+		if (pwdVal === '') {
+			$pwdMsg.text('비밀번호를 입력하세요.').removeClass('hidden');
+			$pwd.addClass('bg-[#FF3E24]');
+		} else if (!passReg.test(pwdVal)) {
+			$pwdMsg.text('비밀번호는 영문, 숫자, 특수문자 포함 8자리 이상입니다.').removeClass('hidden');
+			$pwd.addClass('bg-[#FF3E24]');
+		} else {
+			pwdOk = true;
+			$pwdMsg.addClass('hidden');
+			$pwd.removeClass('bg-[#FF3E24]');
+		}
+		
+		/* --- 비밀번호 검증 --- */
+		let repwdOk = false;
+		if (repwdVal === '') {
+			$repwdMsg.text('비밀번호 확인을 입력하세요.').removeClass('hidden');
+			$repwd.addClass('bg-[#FF3E24]');
+		} else {
+			if (pwdVal != repwdVal) {
+				$repwdMsg.text('비밀번호가 맞지 않습니다.').removeClass('hidden');
+				$repwd.addClass('bg-[#FF3E24]');
+			}
+			else{
+				
+				repwdOk = true;
+				$repwdMsg.addClass('hidden');
+				$repwd.removeClass('bg-[#FF3E24]');
+			}
+		}
+
+		console.log(idOk);
+		console.log(pwdOk);
+		$submit.prop('disabled', !(idOk && pwdOk && repwdOk));
+	}
+
+	// 포커스가 빠져나올 때 검사
+	$id.on('blur', validate);
+	$pwd.on('blur', validate);
+	$repwd.on('blur', validate);
+});
+function checkmember()	{
+	const idVal  = $('#f_id').val().trim();
+	const pwdVal = $('#f_passwd').val();
+	
+	if(idVal != '' && pwdVal != '')	{
+		$.get('/exec/proajax.php?act=member&han=prejoin&id='+idVal+'&passwd='+pwdVal, function(response) {
+			if(response.res=='ok')	{
+				location.href='/member/?act=joinstep3&pre_idx='+response.pre_idx;	
+			}	else	{
+				location.href='/member/?act=exists';	
+			}
+	
+		});
+	}
+}
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center">
+			<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+		</div>
+		<div style="height:4px;">
+			<div style="margin-left:25%;width:25%;background-color:#6F6963;height:4px;"></div>
+		</div>
+		<div class="px-6 pt-12">
+			<div class="text-[#322A24] text-lg font-bold">회원가입</div>
+			<div class="pt-4 text-[#6F6963] font-medium text-sm pb-10">로그인에 사용할 아이디와 비밀번호를 입력해 주세요.</div>
+			<div class="text-sm text-[#322A24] font-medium pb-2">아이디</div>
+			<div class="mb-4">
+				<div class="h-[46px] border-[#C0BCB6] border mb-1">
+					<input type="text" name="id" id="f_id" placeholder="이메일을 입력해 주세요." class="block px-4 bg-[#FDFBF4] w-full h-[44px] font-medium" />
+				</div>
+				<div class="hidden text-[#FF3E24] text-[10px]" id="f_idmsg"></div>
+			</div>
+			<div class="text-sm text-[#322A24] font-medium pb-2">비밀번호</div>
+			<div class="mb-4">
+				<div class="h-[46px] border-[#C0BCB6] border mb-1">
+					<input type="password" name="passwd" id="f_passwd" placeholder="비밀번호 입력(영문, 숫자, 특수문자 포함 8~20 이내)" class="block px-4 bg-[#FDFBF4] w-full h-[44px] font-medium" />
+				</div>
+				<div class="hidden text-[#FF3E24] text-[10px]" id="f_passwdmsg"></div>
+			</div>
+			<div class="mb-12">
+				<div class="h-[46px] border-[#C0BCB6] border mb-1">
+					<input type="password" name="repasswd" id="f_repasswd" placeholder="비밀번호 확인" class="block px-4 bg-[#FDFBF4] w-full h-[44px] font-medium" />
+				</div>
+				<div class="hidden text-[#FF3E24] text-[10px]" id="f_repasswdmsg"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<div class="fixed px-6" style="bottom:44px;left:0;right:0;">
+	<button type="button" onclick="checkmember()" id="f_next" class="w-full block h-[46px] text-sm text-[#FFFFFF] font-bold disabled:opacity-15 bg-[#322A24]"  disabled>다음</button>
+</div>
+</body>
+</html>

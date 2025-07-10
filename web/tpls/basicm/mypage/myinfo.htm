@@ -1,0 +1,66 @@
+{#header}
+<script>
+$(document).ready(function () {
+	
+
+	const $pwd    = $('#f_passwd');
+	const $submit = $('#f_submit');
+	const $pwdMsg  = $('#f_passwdmsg');
+
+	const passReg  = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+
+	function validate() {
+		
+		const pwdVal = $pwd.val();
+		
+		/* --- 비밀번호 검증 --- */
+		let pwdOk = false;
+		if (pwdVal === '') {
+			$pwdMsg.text('비밀번호를 입력하세요.').removeClass('hidden');
+			$pwd.addClass('bg-[#FF3E24]');
+		} else if (!passReg.test(pwdVal)) {
+			$pwdMsg.text('비밀번호는 영문, 숫자, 특수문자 포함 8자리 이상입니다.').removeClass('hidden');
+			$pwd.addClass('bg-[#FF3E24]');
+		} else {
+			pwdOk = true;
+			$pwdMsg.addClass('hidden');
+			$pwd.removeClass('bg-[#FF3E24]');
+		}
+
+		$submit.prop('disabled', !pwdOk);
+	}
+
+	// 포커스가 빠져나올 때 검사
+	$pwd.on('blur', validate);
+});
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="h-[58px] flex px-6 items-center">
+			<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+			<div class="text-lg font-bold">회원정보</div>
+		</div>
+		<div class="pt-12 px-6">
+			<div class="text-[#322A24] text-lg font-bold pb-4">비밀번호 재확인</div>
+			<div class="text-[#6F6963] text-sm font-medium pb-10">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해 주세요.</div>			
+			<div class="text-[#322A24] text-sm font-medium pb-2">아이디</div>
+			<div style="background-color:#E9E6E0;border:1px solid #C0BCB6;" class="py-3 px-4 text-[#6F6963] text-sm font-normal mb-6">
+				{gmem.id}
+			</div>
+			<div class="text-sm text-[#322A24] font-medium pb-2">비밀번호</div>
+			<div class="mb-12">
+				<div class="h-[46px] border-[#C0BCB6] border mb-1">
+					<input type="password" name="passwd" id="f_passwd" placeholder="비밀번호를 입력해 주세요." class="block px-4 bg-[#FDFBF4] w-full h-[44px] font-medium" />
+				</div>
+				<div class="hidden text-[#FF3E24] text-[10px]" id="f_passwdmsg"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="fixed px-6 z-20 bg-[#FDFBF5] py-6" style="bottom:0;left:0;right:0;">
+	<button type="button" id="f_submit" class="w-full block h-[46px] text-sm text-[#FFFFFF] font-bold disabled:opacity-15 bg-[#322A24]" disabled>확인</button>
+</div>
+</body>
+</html>

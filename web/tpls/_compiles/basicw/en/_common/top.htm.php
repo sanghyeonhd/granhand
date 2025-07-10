@@ -1,0 +1,45 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:30 /home/grandhand/BUILDS/tpls/basicw/_common/top.htm 000005737 */ ?>
+<script>
+function chlang()	{
+	if($("#showlaylang").hasClass("hidden"))	{
+		$("#showlaylang").removeClass("hidden");
+	}	else	{
+		$("#showlaylang").addClass("hidden");
+	}
+}
+</script>
+</head>
+<body class="bg-[#FDFBF5]">
+<div class="w-[1120px] mx-auto min-h-screen">
+	<header class="flex items-center justify-between py-4 container mx-auto">
+		<a class="text-2xl font-bold text-[#322A24]" href="/">GRANHAND.</a>
+		<div class="flex items-center gap-8">
+			<a href="/">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 3L20.5 9.42385V20.5H2.5V9.42385L11.5 3ZM3.7 10.1094V19.3388H19.3V10.1094L11.5 4.5L3.7 10.1094Z" fill="#5E5955"></path><path d="M11.5 14.5L11.5 17.5" stroke="#5E5955" stroke-width="1.1"></path></svg>
+			</a>
+			<a href="/cont/?act=search">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.5495 16.3201C14.326 17.3674 12.7369 18 11 18C7.13401 18 4 14.866 4 11C4 7.13401 7.13401 4 11 4C14.866 4 18 7.13401 18 11C18 12.7041 17.391 14.266 16.3789 15.48L21.0559 19.348L20.2575 20.2137L15.5495 16.3201ZM16.9228 11.0001C16.9228 14.2713 14.271 16.9231 10.9997 16.9231C7.72851 16.9231 5.07666 14.2713 5.07666 11.0001C5.07666 7.72884 7.72851 5.07698 10.9997 5.07698C14.271 5.07698 16.9228 7.72884 16.9228 11.0001Z" fill="#5E5955"></path></svg>
+			</a>
+			<a href="/order/?act=cart">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 20L4 7H21L19 20H6Z" stroke="#5E5955" stroke-width="1.1"></path><path d="M14.8516 3.33789L17.0016 7" stroke="#5E5955" stroke-width="1.1"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8.26559 7.12247L10.3281 3.55005L9.3755 3.00005L7.31296 6.57247L8.26559 7.12247Z" fill="#5E5955"></path><path d="M12.5 16.0781C12.0286 16.0781 11.6224 15.9648 11.2812 15.7383C10.9427 15.5091 10.6823 15.1771 10.5 14.7422C10.3177 14.3073 10.2266 13.7839 10.2266 13.1719C10.2266 12.5599 10.3177 12.0365 10.5 11.6016C10.6823 11.1667 10.9427 10.8359 11.2812 10.6094C11.6224 10.3802 12.0286 10.2656 12.5 10.2656C12.9688 10.2656 13.3737 10.3802 13.7148 10.6094C14.056 10.8359 14.3177 11.168 14.5 11.6055C14.6823 12.0404 14.7734 12.5625 14.7734 13.1719C14.7734 13.7865 14.6823 14.3112 14.5 14.7461C14.3177 15.181 14.056 15.5117 13.7148 15.7383C13.3763 15.9648 12.9714 16.0781 12.5 16.0781ZM12.5 15.1094C12.7188 15.1094 12.9076 15.0391 13.0664 14.8984C13.2279 14.7578 13.3516 14.5456 13.4375 14.2617C13.526 13.9779 13.5703 13.6276 13.5703 13.2109C13.5703 12.5625 13.4766 12.0703 13.2891 11.7344C13.1016 11.3958 12.8385 11.2266 12.5 11.2266C12.1615 11.2266 11.8984 11.3958 11.7109 11.7344C11.5234 12.0703 11.4297 12.5625 11.4297 13.2109C11.4297 13.6276 11.4727 13.9779 11.5586 14.2617C11.6471 14.5456 11.7708 14.7578 11.9297 14.8984C12.0911 15.0391 12.2812 15.1094 12.5 15.1094Z" fill="#5E5955"></path></svg>
+			</a>
+			<a href="/mypage/?act=main">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20C20 19.3957 19.9125 18.8093 19.748 18.25C18.8599 15.2309 15.7277 13 12 13C8.27232 13 5.14012 15.2309 4.25203 18.25C4.08751 18.8093 4 19.3957 4 20" stroke="#5E5955" stroke-width="1.1"></path><circle cx="12" cy="7" r="3.45" stroke="#5E5955" stroke-width="1.1"></circle></svg>
+			</a>
+			<div class="relative">
+				<button type="button" onclick="chlang();" id="changelang" aria-haspopup="menu" aria-expanded="false" data-state="closed" class="text-sm flex items-center gap-1 text-[#5E5955]">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.5" stroke="#DBD7D0"></circle><path d="M6 6C7.51223 7.23254 9.64132 8 12 8C14.3587 8 16.4878 7.23254 18 6" stroke="#DBD7D0"></path><path d="M6 18C7.51223 16.7675 9.64132 16 12 16C14.3587 16 16.4878 16.7675 18 18" stroke="#DBD7D0"></path><path d="M12 20C9.23858 20 7 16.4183 7 12C7 7.58172 9.23858 4 12 4" stroke="#DBD7D0"></path><path d="M12 20C14.7614 20 17 16.4183 17 12C17 7.58172 14.7614 4 12 4" stroke="#DBD7D0"></path><path d="M12 3.5V21" stroke="#DBD7D0"></path><path d="M3.5 12H20.5" stroke="#DBD7D0"></path></svg>
+					<svg width="4" height="3" viewBox="0 0 4 3" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2.5L0.267949 0.25L3.73205 0.25L2 2.5Z" fill="#DBD7D0"></path></svg>
+				</button>
+				<div id="showlaylang" class="hidden absolute left-1/2 width-[] -translate-x-1/2 -translate-y-1/2 z-50 px-4 py-2 rounded shadow w-auto inline-block whitespace-nowrap bg-[#FDFBF5]" style="top:65px;width:120px;">
+					<a href="/?lang=ko" class="block mb-4 font-normal <?php if($TPL_VAR["global"]["lang"]=='ko'){?>text-[#322A24]<?php }else{?>text-[#C0BCB6]<?php }?> text-xs">한국어</a>
+					<a href="/?lang=en" class="block mb-4 font-normal <?php if($TPL_VAR["global"]["lang"]=='en'){?>text-[#322A24]<?php }else{?>text-[#C0BCB6]<?php }?> text-xs">English</a>					
+				</div>
+			</div>
+<?php if($TPL_VAR["global"]["memislogin"]=='Y'){?>
+			<a class="px-4 py-2 border !border-[#C0BCB6] rounded text-sm text-[#322A24] font-[700] hover:bg-[#f5f3ef] min-w-30 text-center justify-center items-center" href="/exec/proc.php?act=member&han=logout">로그아웃</a>
+<?php }else{?>
+			<a class="px-4 py-2 border !border-[#C0BCB6] rounded text-sm text-[#322A24] font-[700] hover:bg-[#f5f3ef] min-w-30 text-center justify-center items-center" href="/member/?act=login">로그인</a>
+<?php }?>
+		</div>
+	</header>

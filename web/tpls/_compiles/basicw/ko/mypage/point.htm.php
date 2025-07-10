@@ -1,0 +1,137 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:29 /home/grandhand/BUILDS/tpls/basicw/mypage/point.htm 000011880 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script>
+function showintro()	{
+	
+	if($('#modalOverlay').hasClass('hidden'))	{
+		$('#modalOverlay').removeClass('hidden');	
+	}	else	{
+		$('#modalOverlay').addClass('hidden');	
+	}
+}
+function showmenu(obj)	{
+	
+	$(obj).parent().find("button").removeClass("text-[#322A24]");
+	$(obj).parent().find("button").addClass("text-[#C0BCB6]");
+	$(obj).removeClass("text-[#C0BCB6]");
+	$(obj).addClass("text-[#322A24]");
+}
+</script>
+<?php $this->print_("top",$TPL_SCP,1);?>
+
+<div class="container mx-auto pt-8">
+	<div class="w-full py-10 mx-auto text-[#6F6963]">
+		<div class="flex justify-between">
+			<h1 class="text-lg font-medium mb-8">포인트</h1>
+		</div>
+	</div>
+	<div class="flex w-full min-h-screen text-gray-900">
+		<aside class="w-1/3 max-w-64 min-w-50 px-6 py-10 space-y-10 mr-[2%]">
+			<div class="flex items-center gap-4">
+				<div class="flex flex-col items-center gap-2 w-full">
+					<div class="pt-1">
+						<div class="w-[42px] h-[42px] rounded-full text-2xl flex items-center justify-center font-bold text-white" style="background-color: rgb(233, 230, 224);">B</div>
+					</div>
+					<span class="font-bold text-center text-2xl mt-3 text-[#322A24]"><?php echo $TPL_VAR["gmem"]["name"]?> 님</span>
+				</div>
+			</div>
+			<div class="space-y-6 mt-8">
+				<div>
+					<div class="flex justify-between items-center cursor-pointer text-sm font-bold text-[#5E5955] mypagemenu">마이페이지
+						<svg class="open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up w-[24px] h-[24px]" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg>
+						
+						<svg class="off hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-[24px] h-[24px]" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+					</div>
+					<ul class="mt-2 space-y-1 text-sm font-medium">
+						<a href="/mypage/?act=main">
+							<li class="px-6 py-2  text-[#6F6963]">마이페이지</li>
+						</a>
+						<a href="/mypage/?act=myorder">
+							<li class="px-6 py-2 text-[#C0BCB6]">주문 내역</li>
+						</a>
+						<a href="/mypage/?act=cancel">
+							<li class="px-6 py-2 text-[#C0BCB6]">취소/교환/반품 내역</li>
+						</a>
+						
+						<a href="/mypage/?act=point">
+							<li class="px-6 py-2 text-[#C0BCB6] bg-[#322A2408] rounded">포인트</li>
+						</a>
+						<a href="/mypage/?act=check">
+							<li class="px-6 py-2 text-[#C0BCB6]">출석 체크</li>
+						</a>
+						<a href="/mypage/?act=lucky">
+							<li class="px-6 py-2 text-[#C0BCB6]">행운 뽑기</li>
+						</a>
+					</ul>
+				</div>
+				<div>
+					<div class="flex justify-between items-center cursor-pointer text-sm font-bold text-[#5E5955] mypagemenu">나의 쿠폰함
+						<svg class="open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up w-[24px] h-[24px]" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg>
+						
+						<svg class="off hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-[24px] h-[24px]" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+					</div>
+					<ul class="mt-2 space-y-1 text-sm font-medium">
+						<a href="/mypage/?act=mycoupon">
+							<li class="px-6 py-2 text-[#C0BCB6]">보유 쿠폰</li>
+						</a>
+						<a href="/mypage/?act=mycouponregi">
+							<li class="px-6 py-2 text-[#C0BCB6]">쿠폰 등록</li>
+						</a>
+					</ul>
+				</div>
+				<div>
+				<div class="flex justify-between items-center cursor-pointer text-sm font-bold text-[#5E5955] mypagemenu">회원 정보
+					<svg class="open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up w-[24px] h-[24px]" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg>
+						
+						<svg class="off hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-[24px] h-[24px]" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+				</div>
+				<ul class="mt-2 space-y-1 text-sm font-medium">
+					<a href="/mypage/?act=myinfo">
+						<li class="px-6 py-2 text-[#C0BCB6]">회원 정보 수정</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+	</aside>
+	<main class="w-[738px] mx-auto ml-10">
+		<section class="border rounded-md shadow-sm bg-[#FDFBF5]">
+			<div class="px-6 pt-6">
+				<p class="text-xs font-medium text-[#322A24]">포인트</p>
+				<p class="text-[32px] font-bold text-right text-[#322A24]"><?php echo number_format($TPL_VAR["gmem"]["mempoints"])?></p>
+			</div>
+			<div class="border-t border-dashed border-[#E9E6E0] my-4 mt-8 mx-6"></div>
+			<div class="px-6 pb-6 flex justify-between items-center text-xs font-medium text-[#C0BCB6]">
+				<span>이번 달 소멸 예정 포인트</span>
+				<span class="text-[#322A24]">0</span>
+			</div>
+		</section>
+		<section class="space-y-6 mt-16">
+			<div>
+				<div class="text-sm font-bold flex items-center gap-2 text-[#322A24]">포인트 상세 내역
+					<A href="#none" onclick="event.preventDefault(); showintro();"><div class="w-[16px] h-[16px] flex items-center justify-center rounded-full border border-gray-300 text-gray-400 text-[8px]">?</div></a>
+				</div>
+				<div class="flex gap-4 text-sm text-gray-400 items-center">
+					<button type="button" onclick="showmenu(this);" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 text-sm font-bold text-[#322A24]  hover:text-black transition-colors min-w-[5%] p-0">전체</button>
+					
+					<button type="button" onclick="showmenu(this);" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 text-sm font-bold text-[#C0BCB6] hover:text-black transition-colors min-w-[5%] p-0">적립</button>
+					
+					<button type="button" onclick="showmenu(this);" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 text-sm font-bold text-[#C0BCB6] hover:text-black transition-colors min-w-[5%] p-0">사용</button>
+					
+					<button type="button" onclick="showmenu(this);" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 text-sm font-bold text-[#C0BCB6] hover:text-black transition-colors min-w-[5%] p-0">소멸</button>
+				</div>
+			</div>
+		</section>
+		<div class="flex justify-center items-center gap-2 py-8 flex-wrap"></div>
+	</main>
+</div>
+<!-- 배경 오버레이 -->
+<div id="modalOverlay" class="fixed inset-0 flex items-center justify-center z-50 hidden" style="background-color:rgba(0,0,0,0.4);">
+	<!-- 모달 창 -->
+	<div class="bg-white w-[300px] p-6 rounded-xl shadow-lg">
+	<div role="dialog" id="radix-«r22»" aria-describedby="radix-«r24»" aria-labelledby="radix-«r23»" data-state="open" class="fixed left-[50%] top-[50%] z-50 grid translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg bg-[#FDFBF5] max-w-2xl w-[390px] h-[502px]" tabindex="-1" style="pointer-events: auto;"><div class="flex flex-col space-y-1.5 text-center sm:text-left"><h2 id="radix-«r23»" class="tracking-tight flex text-base font-bold">포인트 사용 안내</h2></div><div class="space-y-8 text-[#48413A] text-[10px]"><div><div class="font-bold mb-2">1. 포인트 적립</div><ul class="list-disc pl-6 space-y-1"><li>구매 및 이벤트 참여를 통해 포인트를 적립 받을 수 있습니다.</li><li>적립 기준은 참여 이벤트마다 상이합니다.</li><li>그랑핸드&amp;콤포타블 온/오프라인 결제에 공통으로 적용됩니다.</li><li>구매로 인한 적립은 소비자의 구매확정 또는 배송 완료일 기준 7일 이후에 자동 적립됩니다.</li></ul></div><div><div class="font-bold mb-2">2. 사용/유효기간</div><ul class="list-disc pl-6 space-y-1"><li>최소 1,000원부터 사용할 수 있으며, 포인트는 유효기간 임박 순으로 사용됩니다.</li><li>포인트는 타인에게 선물 및 양도가 불가합니다.</li><li>주문 취소로 인한 포인트 환급 시, 유효기간이 긴 순으로 환급 처리됩니다.</li><li>구입한 상품 환불/반품 시 구매 포인트는 자동 소멸되며, 반품 배송비 혹은 다른 결제 용도로 사용이 불가합니다.</li><li>모든 포인트는 지급 시 유효기간 명시하고, 명시되지 않은 경우 지급일로부터 1년 내 사용을 기준으로 합니다.</li></ul></div><div><div class="font-bold mb-2">3. 소멸</div><ul class="list-disc pl-6 space-y-1"><li>포인트를 사용하지 않으면 유효기간 도래 시 자동 소멸됩니다.</li><li>회원 탈퇴 시, 해당 회원이 보유한 포인트는 즉시 소멸되며, 서비스에 재가입하더라도 소멸된 포인트는 복구되지 않습니다.</li></ul></div></div><button onclick="showintro()" type="button" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span class="sr-only">Close</span></button></div>
+	
+		
+	</div>
+</div>
+<?php $this->print_("down",$TPL_SCP,1);?>

@@ -1,0 +1,73 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:27 /home/grandhand/BUILDS/tpls/basicm/cont/eventv.htm 000004084 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+<script>
+function showshare()	{
+	console.log($("#sharebg").css("display"));
+	if($("#sharebg").css("display") == "none")	{
+		$("#sharebg").removeClass("hidden");	
+		$("#sharecnt").removeClass("hidden");
+		
+		$("body").addClass("overflow-hidden");
+	}	else	{
+		$("#sharebg").addClass("hidden");	
+		$("#sharecnt").addClass("hidden");
+		$("body").removeClass("overflow-hidden");		
+	}
+}
+function copyToClipboard() {
+    const input = document.getElementById("shareurl");
+    input.select();                   // 텍스트 선택
+    input.setSelectionRange(0, 99999); // 모바일 호환을 위한 범위 지정
+
+    document.execCommand("copy");     // 복사 실행
+
+    alert("복사되었습니다");
+}
+</script>
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="topbar h-[58px] flex px-6 items-center fixed top-0 right-0 left-0 justify-between bg-[#FDFBF4]">
+			<div class="flex items-center">
+				<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+				<div class="text-lg font-bold text-[#5E5955]">EVENT</div>
+			</div>
+			<div><A href="#none" onclick="event.preventDefault(); showshare();"><img id="shareimg" src="/img/m/icon_SHARE_dark.png"></a></div>
+		</div>
+		<div style="padding-top:58px;">
+			<div class="mainimg pl-6"><img src="<?php echo $TPL_VAR["global"]["imgdomain"]?>/event/<?php echo $TPL_VAR["datas"]["img"]?>" style="width:100%;"></div>
+			<div class="bg-[#FDFBF4] px-6">
+				<div class="py-6">
+					<div class="text-[#322A24] font-medium text-lg"><?php echo $TPL_VAR["datas"]["subject"]?></div>
+					<div class="text-[#C0BCB6] font-normal text-xs"><?php echo substr($TPL_VAR["datas"]["wdate"], 0, 10)?></div>
+				</div>
+				<div><?php echo $TPL_VAR["datas"]["memo"]?></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="sharebg" class="fixed z-20 h-[100vh] top-0 bottom-0 left-0 right-0 hidden" style="background-color:rgba(0,0,0,0.4);" onclick="showshare()">
+
+</div>
+<div id="sharecnt" class="fixed z-50  bg-[#FDFBF5] bottom-0 left-0 right-0 popup-layer hidden px-6 py-6">
+	<div class=" h-[46px] flex justify-end items-center">
+		<a href="#none" onclick="event.preventDefault(); showshare();">
+			<svg class="downupPopup-kapat" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000"	stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+		</a>
+	</div>
+	<div class="font-bold text-[#6F6963] text-base pb-6">공유하기</div>
+	<div>
+		<div class="flex items-center py-3 px-4" style="border:1px solid #C0BCB6;">
+			<div style="flex:1">
+				<input type='text' id="shareurl" class="text-[#C0BCB6] text-sm font-normal" value="http://www.granhand.kro.kr/cont/?act=eventv&idx=<?php echo $_REQUEST["idx"]?>">
+			</div>
+			<button type="button" onclick="copyToClipboard()" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 h-10 ml-4 p-1 text-[#5E5955] hover:text-black transition" aria-label="클립보드에 복사" type="button">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-8 h-8" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+			</button>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?php /* Template_ 2.2.7 2025/07/08 17:45:27 /home/grandhand/BUILDS/tpls/basicm/cont/term.htm 000000921 */ ?>
+<?php $this->print_("header",$TPL_SCP,1);?>
+
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="fixed top-0 left-0 right-0 z-20 bg-[#FDFBF4]">
+			<div class="h-[58px] flex px-6 items-center ">
+				<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+				<div class="text-lg font-bold">약관 및 정책</div>
+			</div>
+		</div>
+		<div class="h-[54px] px-6" style="padding-top:58px;">
+			<div class="flex items-center">
+				<a href="/cont/?act=term" class="text-[#322A24] text-sm font-medium pr-4">이용약관</a>
+				<a href="/cont/?act=privacy" class="text-[#322A244D] text-sm font-medium pr-4">개인정보처리방침</a>
+			</div>
+		</div>
+		
+	</div>
+</div>
+</body>
+</html>

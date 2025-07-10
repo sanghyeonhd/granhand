@@ -1,0 +1,133 @@
+{#header}
+{#top}
+<div class="container mx-auto pt-8 min-w-2xl">
+	<section class="py-8">
+		<div class="flex gap-4 items-center">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left text-[#6F6963]" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+			<h2 class="text-lg font-medium text-left text-[#6F6963]">주문 상세</h2>
+		</div>
+	</section>
+	<main class="w-[739px] max-w-6xl mx-auto px-4 py-4 space-y-10">
+		<div class="flex justify-between text-[10px] text-[#322A24]">
+			<span class="font-bold">{data.orderno}</span>
+			<span class="text-[#C0BCB6] font-bold">{data.odate}</span>
+		</div>
+		<section class="rounded-lg space-y-4 bg-[#FDFBF5]">
+			<h2 class="text-xs font-bold text-[#322A24]">주문 상품 정보</h2>
+			{@ datalist }
+			<div class="border rounded-md p-4 px-10 space-y-4 shadow-md w-[739px] h-[288px]">
+				<div class="text-sm font-semibold text-[#6F6963]">결제 완료</div>
+				<div class="flex gap-4">
+					<img alt="product" loading="lazy" width="72" height="72" decoding="async" data-nimg="1" class="w-[72px] h-[72px] object-cover rounded" style="color:transparent" src="{.simg1}">
+					<div class="flex flex-col justify-center text-[#322A24] text-xs">
+						<div class="font-bold text-[#C0BCB6]">GRANHAND</div>
+						<div class="font-medium mt-1 leading-relaxed">{.gname}</div>
+						<div class="font-bold text-sm mt-1">{=number_format(.account/100)}원</div>
+					</div>
+				</div>
+				<div class="text-xs border-t border-dashed pt-4 space-y-1 text-[#6F6963]">
+					<div class="flex">
+						<span class="text-[#C0BCB6] w-24">옵션</span><span class="ml-4">롤랑 멀티퍼퓸 200ml / 1개</span>
+					</div>
+					<div class="flex">
+						<span class="text-[#C0BCB6] w-24">쇼핑백</span><span class="ml-4">구매 안함</span>
+					</div>
+					<div class="flex">
+						<span class="text-[#C0BCB6] w-24">스탬핑 여부</span><span class="ml-4">N</span>
+					</div>
+				</div>
+				<div class="grid grid-cols-2 gap-2 text-sm mt-4">
+					<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 w-[318px] h-[34px] py-2 rounded bg-[#322A240A] text-[#6F6963] text-xs font-bold">취소 요청</button>
+				</div>
+			</div>
+			{/}
+		</section>
+			<section class="grid grid-cols-1 md:grid-cols-2 gap-16">
+				<div class="space-y-2 text-sm text-[#6F6963]">
+					<h2 class="font-bold text-[#322A24] mb-2 text-sm">배송지 정보</h2>
+					<div class="mt-4 text-xs pt-4 space-y-2">
+						<div class="flex">
+							<span class="text-[#C0BCB6] w-24">받는 분</span><span>{data.del_name}</span>
+						</div>
+						<div class="flex">
+							<span class="text-[#C0BCB6] w-24">연락처</span><span>{data.del_cp}</span>
+						</div>
+						<div class="flex">
+							<span class="text-[#C0BCB6] w-24">주소</span><span>[{data.del_zip}] {data.del_addr1} {data.del_addr2}</span>
+						</div>
+						<div class="flex">
+							<span class="text-[#C0BCB6] w-24">요청사항</span><span>{data.del_memo}</span>
+						</div>
+					</div>
+				</div>
+				<div class="space-y-6">
+					<div class="bg-[#FDFBF5] rounded-md text-sm text-gray-600 space-y-2">
+						<h2 class="font-bold text-[#322A24] text-sm">최종 결제 금액</h2>
+						<div class="w-[357px] h-[224px] border rounded-md p-6 space-y-3 shadow-md text-[#6F6963] text-xs">
+							<div class="flex justify-between">
+								<span class="text-[#C0BCB6]">상품금액</span><span>55,000원</span>
+							</div>
+							<div class="flex justify-between">
+								<span class="text-[#C0BCB6]">배송비</span><span>0원</span>
+							</div>
+							<div class="flex justify-between">
+								<span class="text-[#C0BCB6]">쿠폰 할인</span><span>-5,000원</span>
+							</div>
+							<div class="flex justify-between">
+								<span class="text-[#C0BCB6]">포인트 사용</span><span>-5,000원</span>
+							</div>
+							<hr class="my-2 border-dashed">
+								<div class="flex justify-between font-semibold text-[#322A24]"><span>결제 금액</span><span class="text-base">45,000원</span>
+							</div>
+							<div class="flex justify-between ml-2">
+								<span class="text-[#C0BCB6]">└ <!-- -->신용카드<!-- --> (현대카드)</span><span>45,000원</span>
+							</div>
+						</div>
+					</div>
+					<div class="bg-[#FDFBF5] text-sm text-[#6F6963] space-y-2 w-full">
+						<h2 class="font-bold text-[#322A24] text-sm">최종 결제 금액</h2>
+						<div class="w-[357px] h-[378px] border rounded-md p-4 space-y-3 shadow-md text-xs">
+							<div class="flex justify-between font-bold text-[#322A24]">
+								<span>결제 금액</span><span>33,539원</span>
+							</div>
+							<div class="ml-2 space-y-2">
+								<div class="flex justify-between">
+									<span class="text-[#C0BCB6]">상품금액</span><span>35,500원</span>
+								</div>
+								<div class="flex justify-between">
+									<span class="text-[#C0BCB6]">배송비</span><span>0원</span>
+								</div>
+								<div class="flex justify-between">
+									<span class="text-[#C0BCB6]">쿠폰 사용</span><span>-1,961원</span>
+								</div>
+								<div class="flex justify-between">
+									<span class="text-[#C0BCB6]">포인트 사용</span><span>0</span>
+								</div>
+							</div>
+							<hr class="my-5 border-dashed">
+							<div class="flex justify-between font-semibold text-[#FF3E24]">
+								<span>차감 금액</span><span>(-) 0원</span>
+							</div>
+							<div class="ml-2 space-y-2">
+								<div class="flex justify-between">
+									<span class="text-[#C0BCB6]">추가 배송비</span><span>0원</span>
+								</div>
+								<div class="flex justify-between">
+									<span class="text-[#C0BCB6]">반품 배송비</span><span>3,000원</span>
+								</div>
+							</div>
+							<hr class="my-5 border-dashed">
+							<div class="flex justify-between font-semibold text-[#322A24]">
+								<span>환불 금액</span><span class="text-base">33,539원</span>
+							</div>
+							<div class="text-xs text-[#C0BCB6] ml-2">└ <!-- -->신용카드<!-- --> (현대카드)</div>
+							<div class="flex justify-between text-[#322A24] mt-3">
+								<span class="font-semibold">포인트 환불</span><span class="font-semibold">0</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+{#down}

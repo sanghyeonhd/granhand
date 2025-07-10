@@ -1,0 +1,31 @@
+{#header}
+</head>
+<body>
+<div id="root">
+	<div class="min-h-screen bg-[#FDFBF4]">
+		<div class="fixed top-0 left-0 right-0 z-20 bg-[#FDFBF4]">
+			<div class="h-[58px] flex px-6 items-center ">
+				<a href="#none" onclick="event.preventDefault(); history.back();" class="pr-6"><img src="/img/m/icon_ARROWLEFT_dark.png" /></a>
+				<div class="text-lg font-bold">EVENT</div>
+			</div>
+		</div>
+		<div class="px-6" style="padding-top:60px">
+			{@ get_event(l_arr.npage - 1,l_arr.numper,"") }
+			<a class="block" href="/cont/?act=eventv&idx={.idx}">
+				<div class=" mb-4">
+					<div class="pb-2">
+						<img src="{global.imgdomain}/event/{.img}" alt="NOLL Store" class="w-full h-full object-cover rounded-sm">
+					</div>
+					<div class="pb-1 text-[#322A24] text-sm font-medium">
+						{.subject}
+					</div>
+					<div class="text-[#C0BCB6] text-xs font-normal">{=substr(.wdate,0,10)}</div>
+				</div>
+			</a>
+			{/}
+		</div>
+		
+	</div>
+</div>
+</body>
+</html>
